@@ -76,7 +76,7 @@ const PLAYERS = [
 
   // ── LEFT WING ─────────────────────────────────────────────
   { name:"Vinicius Jr",           nation:"Brazil",      club:"Real Madrid",        rating:92, attack:92, midfield:74, defense:34, positions:["LW"],           face:"faces/vinicius.png",     rarity:"special" },
-  { name:"Kylian Mbappé",         nation:"France",      club:"Real Madrid",        rating:95, attack:95, midfield:78, defense:36, positions:["LW","ST"],      face:"faces/mbappe.png",       rarity:"special" },
+  { name:"Kylian Mbappé",         nation:"France",      club:"Real Madrid",        rating:91, attack:93, midfield:86, defense:38, positions:["LW","ST"],      face:"faces/mbappe.png",       rarity:"gold" },
   { name:"Bukayo Saka",           nation:"England",     club:"Arsenal",            rating:89, attack:89, midfield:78, defense:56, positions:["LW","RW"],      face:"faces/saka.png",         rarity:"gold"    },
   { name:"Leroy Sané",            nation:"Germany",     club:"Bayern Munich",      rating:86, attack:86, midfield:72, defense:38, positions:["LW","RW"],      face:"faces/sane.png",         rarity:"gold"    },
   { name:"Ousmane Dembélé",       nation:"France",      club:"PSG",                rating:86, attack:87, midfield:68, defense:32, positions:["LW","RW"],      face:"faces/dembele.png",      rarity:"gold"    },
