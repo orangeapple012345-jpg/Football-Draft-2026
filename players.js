@@ -108,6 +108,6 @@ const PLAYERS = [
   { name:"Victor Osimhen",        nation:"Nigeria",     club:"Galatasaray",        rating:88, attack:89, midfield:60, defense:24, positions:["ST"],           face:"faces/osimhen.png",      rarity:"gold"    },
   { name:"Lautaro Martínez",      nation:"Argentina",   club:"Inter Milan",        rating:88, attack:89, midfield:66, defense:30, positions:["ST"],           face:"faces/lautaro.png",      rarity:"gold"    },
   { name:"Darwin Núñez",          nation:"Uruguay",     club:"Liverpool",          rating:84, attack:85, midfield:58, defense:25, positions:["ST","LW"],      face:"faces/nunez.png",        rarity:"gold"    },
-  { name:"Olivier Giroud",        nation:"France",      club:"LA Galaxy",          rating:80, attack:80, midfield:58, defense:28, positions:["ST"],           face:"faces/giroud.png",       rarity:"silver"  },
+  { name:"Julian Alvarez",        nation:"Argentina",      club:"Atletico Madrid",     rating:87, attack:89, midfield:84, defense:56, positions:["ST"],           face:"faces/alvarez.png",       rarity:"gold"  },
 
 ];
