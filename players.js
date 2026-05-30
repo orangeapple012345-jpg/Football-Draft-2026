@@ -27,7 +27,7 @@ const PLAYERS = [
 
   // ── RIGHT BACKS ───────────────────────────────────────────
   { name:"Trent Alexander-Arnold",nation:"England",     club:"Liverpool",          rating:87, attack:80, midfield:78, defense:82, positions:["RB"],           face:"faces/trent.png",        rarity:"gold"    },
-  { name:"Achraf Hakimi",         nation:"Morocco",     club:"PSG",                rating:86, attack:82, midfield:72, defense:80, positions:["RB"],           face:"faces/hakimi.png",       rarity:"gold"    },
+  { name:"Achraf Hakimi",         nation:"Morocco",     club:"PSG",                rating:89, attack:81, midfield:86, defense:87, positions:["RB"],           face:"faces/hakimi.png",       rarity:"gold"    },
   { name:"Dani Carvajal",         nation:"Spain",       club:"Real Madrid",        rating:85, attack:70, midfield:68, defense:85, positions:["RB"],           face:"faces/carvajal.png",     rarity:"gold"    },
   { name:"Reece James",           nation:"England",     club:"Chelsea",            rating:84, attack:74, midfield:70, defense:83, positions:["RB"],           face:"faces/reecejames.png",   rarity:"gold"    },
   { name:"Kyle Walker",           nation:"England",     club:"Man City",           rating:83, attack:68, midfield:64, defense:83, positions:["RB"],           face:"faces/walker.png",       rarity:"gold"    },
