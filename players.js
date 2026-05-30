@@ -559,13 +559,13 @@ const PLAYERS = [
     name: "Kylian Mbappé",
     nation: "France",
     club: "Real Madrid",
-    rating: 95,
-    attack: 95,
-    midfield: 78,
-    defense: 36,
+    rating: 91,
+    attack: 93,
+    midfield: 86,
+    defense: 34,
     positions: ["LW", "ST"],
-    face: "faces/default.png",
-    rarity: "special"
+    face: "faces/mbappe.png",
+    rarity: "gold"
   },
   {
     name: "Leroy Sané",
