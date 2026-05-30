@@ -97,7 +97,7 @@ const PLAYERS = [
   { name:"Lamine Yamal",          nation:"Spain",      club:"Barcelona",         rating:91, attack:91, midfield:90, defense:41, positions:["RW"],      face:"faces/yamal.png",      rarity:"gold"    },
   { name:"Michael Olise",          nation:"France",      club:"Bayern Munich",        rating:89, attack:89, midfield:88, defense:46, positions:["RW"],      face:"faces/olise.png",      rarity:"gold"    },
   { name:"Désiré Doué",          nation:"France",      club:"PSG",               rating:86, attack:87, midfield:85, defense:50, positions:["RW"],      face:"faces/doue.png",      rarity:"gold"    },
-  { name:"Federico Chiesa",       nation:"Italy",       club:"Liverpool",          rating:83, attack:83, midfield:68, defense:40, positions:["RW","LW"],      face:"faces/chiesa.png",       rarity:"silver"  },
+  { name:"Bukayo Saka",       nation:"England",       club:"Arsenal",          rating:87, attack:88, midfield:86, defense:58, positions:["RW"],      face:"faces/saka.png",       rarity:"gold"  },
   { name:"Lionel Messi",       nation:"Argentina",       club:"Inter Miami",          rating:86, attack:87, midfield:89, defense:29, positions:["RW","CAM"],      face:"faces/messi.png",       rarity:"gold"  },
 
 
