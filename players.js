@@ -54,7 +54,7 @@ const PLAYERS = [
   // ── CDM ───────────────────────────────────────────────────
   { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:91, attack:62, midfield:91, defense:86, positions:["CDM","CM"],     face:"faces/rodri.png",        rarity:"special" },
   { name:"Casemiro",              nation:"Brazil",      club:"Man United",         rating:86, attack:55, midfield:84, defense:84, positions:["CDM"],          face:"faces/casemiro.png",     rarity:"gold"    },
-  { name:"Declan Rice",           nation:"England",     club:"Arsenal",            rating:86, attack:64, midfield:85, defense:82, positions:["CDM","CM"],     face:"faces/declanrice.png",   rarity:"gold"    },
+  { name:"Declan Rice",           nation:"England",     club:"Arsenal",            rating:89, attack:79, midfield:89, defense:88, positions:["CDM","CM"],     face:"faces/rice.png",   rarity:"gold"    },
   { name:"Aurélien Tchouaméni",   nation:"France",      club:"Real Madrid",        rating:85, attack:58, midfield:83, defense:82, positions:["CDM","CM"],     face:"faces/tchouameni.png",   rarity:"gold"    },
   { name:"Enzo Fernández",        nation:"Argentina",   club:"Chelsea",            rating:84, attack:65, midfield:84, defense:76, positions:["CDM","CM"],     face:"faces/enzo.png",         rarity:"gold"    },
   { name:"Granit Xhaka",          nation:"Switzerland", club:"Bayer Leverkusen",   rating:83, attack:60, midfield:82, defense:78, positions:["CDM","CM"],     face:"faces/xhaka.png",        rarity:"silver"  },
