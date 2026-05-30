@@ -77,7 +77,7 @@ const PLAYERS = [
   { name:"James Maddison",        nation:"England",     club:"Tottenham",          rating:83, attack:80, midfield:83, defense:52, positions:["CAM","RW"],     face:"faces/maddison.png",     rarity:"gold"    },
 
   // ── LEFT WING ─────────────────────────────────────────────
-  { name:"Vinicius Jr",           nation:"Brazil",      club:"Real Madrid",        rating:89, attack:91, midfield:85, defense:40, positions:["LW"],           face:"faces/vini.png",     rarity:"special" },
+  { name:"Vinicius Jr",           nation:"Brazil",      club:"Real Madrid",        rating:89, attack:91, midfield:85, defense:40, positions:["LW"],           face:"faces/vini.png",     rarity:"gold" },
   { name:"Kylian Mbappé",         nation:"France",      club:"Real Madrid",        rating:91, attack:93, midfield:86, defense:38, positions:["LW","ST"],      face:"faces/mbappe.png",       rarity:"gold" },
   { name:"Raphinha",              nation:"Brazil",      club:"Barcelona",        rating:89, attack:90, midfield:86, defense:52, positions:["LW","RW"],      face:"faces/raphinha.png",       rarity:"gold" },
   { name:"Bukayo Saka",           nation:"England",     club:"Arsenal",            rating:89, attack:89, midfield:78, defense:56, positions:["LW","RW"],      face:"faces/saka.png",         rarity:"gold"    },
