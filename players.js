@@ -70,7 +70,7 @@ const PLAYERS = [
   { name:"Gavi",                  nation:"Spain",       club:"Barcelona",          rating:87, attack:76, midfield:87, defense:64, positions:["CM"],           face:"faces/gavi.png",         rarity:"gold"    },
 
   // ── CAM ───────────────────────────────────────────────────
-  { name:"Bruno Fernandes",       nation:"Portugal",    club:"Man United",         rating:87, attack:84, midfield:86, defense:58, positions:["CAM","CM"],     face:"faces/brunofernandes.png",rarity:"gold"   },
+  { name:"Bruno Fernandes",       nation:"Portugal",    club:"Man United",         rating:89, attack:86, midfield:91, defense:71, positions:["CAM","CM"],     face:"faces/fernandes.png",    rarity:"gold"   },
   { name:"Bernardo Silva",        nation:"Portugal",    club:"Man City",           rating:87, attack:82, midfield:86, defense:65, positions:["CAM","CM","RW"],face:"faces/bernardo.png",     rarity:"gold"    },
   { name:"Ilkay Gündogan",        nation:"Germany",     club:"Barcelona",          rating:85, attack:78, midfield:86, defense:62, positions:["CAM","CM"],     face:"faces/gundogan.png",     rarity:"gold"    },
   { name:"James Maddison",        nation:"England",     club:"Tottenham",          rating:83, attack:80, midfield:83, defense:52, positions:["CAM","RW"],     face:"faces/maddison.png",     rarity:"gold"    },
