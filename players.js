@@ -92,8 +92,9 @@ const PLAYERS = [
   { name:"Phil Foden",            nation:"England",     club:"Man City",           rating:90, attack:89, midfield:84, defense:44, positions:["RW","LW","CAM"],face:"faces/foden.png",        rarity:"gold"    },
   { name:"Florian Wirtz",         nation:"Germany",     club:"Bayer Leverkusen",   rating:89, attack:88, midfield:86, defense:42, positions:["RW","CAM"],     face:"faces/wirtz.png",        rarity:"special" },
   { name:"Rodrygo",               nation:"Brazil",      club:"Real Madrid",        rating:85, attack:85, midfield:72, defense:36, positions:["RW","LW"],      face:"faces/rodrygo.png",      rarity:"gold"    },
-  { name:"Lamine Yamal",          nation:"Spain",      club:"Barcelona",        rating:91, attack:91, midfield:90, defense:41, positions:["RW"],      face:"faces/yamal.png",      rarity:"gold"    },
+  { name:"Lamine Yamal",          nation:"Spain",      club:"Barcelona",         rating:91, attack:91, midfield:90, defense:41, positions:["RW"],      face:"faces/yamal.png",      rarity:"gold"    },
   { name:"Michael Olise",          nation:"France",      club:"Bayern Munich",        rating:89, attack:89, midfield:88, defense:46, positions:["RW"],      face:"faces/olise.png",      rarity:"gold"    },
+  { name:"Désiré Doué",          nation:"France",      club:"PSG",               rating:86, attack:87, midfield:85, defense:50, positions:["RW"],      face:"faces/doue.png",      rarity:"gold"    },
   { name:"Federico Chiesa",       nation:"Italy",       club:"Liverpool",          rating:83, attack:83, midfield:68, defense:40, positions:["RW","LW"],      face:"faces/chiesa.png",       rarity:"silver"  },
 
   // ── STRIKERS ──────────────────────────────────────────────
