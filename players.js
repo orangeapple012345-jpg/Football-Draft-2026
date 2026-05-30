@@ -61,7 +61,7 @@ const PLAYERS = [
   { name:"Granit Xhaka",          nation:"Switzerland", club:"Bayer Leverkusen",   rating:83, attack:60, midfield:82, defense:78, positions:["CDM","CM"],     face:"faces/xhaka.png",        rarity:"silver"  },
 
   // ── CM ────────────────────────────────────────────────────
-  { name:"Jude Bellingham",       nation:"England",     club:"Real Madrid",        rating:91, attack:88, midfield:89, defense:70, positions:["CM","CAM"],     face:"faces/bellingham.png",   rarity:"special" },
+  { name:"Jude Bellingham",       nation:"England",     club:"Real Madrid",        rating:89, attack:87, midfield:90, defense:82, positions:["CM","CAM"],     face:"faces/bellingham.png",   rarity:"gold" },
   { name:"Kevin De Bruyne",       nation:"Belgium",     club:"Man City",           rating:91, attack:86, midfield:91, defense:64, positions:["CM","CAM"],     face:"faces/debruyne.png",     rarity:"special" },
   { name:"Luka Modric",           nation:"Croatia",     club:"Real Madrid",        rating:88, attack:74, midfield:89, defense:72, positions:["CM"],           face:"faces/modric.png",       rarity:"gold"    },
   { name:"Federico Valverde",     nation:"Uruguay",     club:"Real Madrid",        rating:88, attack:84, midfield:89, defense:83, positions:["CM", "RB"],      face:"faces/valverde.png",        rarity:"gold"    },
