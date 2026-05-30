@@ -67,6 +67,7 @@ const PLAYERS = [
   { name:"Martin Ødegaard",       nation:"Norway",      club:"Arsenal",            rating:88, attack:82, midfield:88, defense:60, positions:["CM","CAM"],     face:"faces/odegaard.png",     rarity:"gold"    },
   { name:"Pedri",                 nation:"Spain",       club:"Barcelona",          rating:90, attack:85, midfield:92, defense:74, positions:["CM"],     face:"faces/pedri.png",        rarity:"gold"    },
   { name:"Vitinha",               nation:"Portugal",       club:"PSG",          rating:90, attack:84, midfield:92, defense:78, positions:["CM","CDM"],     face:"faces/vitinha.png",        rarity:"gold"    },
+  { name:"Joao Neves",               nation:"Portugal",       club:"PSG",          rating:87, attack:78, midfield:89, defense:84, positions:["CM","CDM"],     face:"faces/neves.png",        rarity:"gold"    },
   { name:"Gavi",                  nation:"Spain",       club:"Barcelona",          rating:87, attack:76, midfield:87, defense:64, positions:["CM"],           face:"faces/gavi.png",         rarity:"gold"    },
 
   // ── CAM ───────────────────────────────────────────────────
