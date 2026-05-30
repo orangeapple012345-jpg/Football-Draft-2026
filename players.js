@@ -79,7 +79,7 @@ const PLAYERS = [
   { name:"Kylian Mbappé",         nation:"France",      club:"Real Madrid",        rating:91, attack:93, midfield:86, defense:38, positions:["LW","ST"],      face:"faces/mbappe.png",       rarity:"gold" },
   { name:"Bukayo Saka",           nation:"England",     club:"Arsenal",            rating:89, attack:89, midfield:78, defense:56, positions:["LW","RW"],      face:"faces/saka.png",         rarity:"gold"    },
   { name:"Leroy Sané",            nation:"Germany",     club:"Bayern Munich",      rating:86, attack:86, midfield:72, defense:38, positions:["LW","RW"],      face:"faces/sane.png",         rarity:"gold"    },
-  { name:"Kvicha Kvaratskhelia",       nation:"Georgia",      club:"PSG",          rating:89, attack:90, midfield:87, defense:44, positions:["LW"],      face:"faces/kvara.png",      rarity:"gold"    },
+  { name:"Kvicha Kvaratskhelia",       nation:"Georgia",      club:"PSG",          rating:89, attack:90, midfield:87, defense:44, positions:["LW", "RW"],      face:"faces/kvara.png",      rarity:"gold"    },
   { name:"Ousmane Dembélé",       nation:"France",      club:"PSG",                rating:86, attack:87, midfield:68, defense:32, positions:["LW","RW"],      face:"faces/dembele.png",      rarity:"gold"    },
   { name:"Rafael Leão",           nation:"Portugal",    club:"AC Milan",           rating:86, attack:88, midfield:66, defense:30, positions:["LW","ST"],      face:"faces/leao.png",         rarity:"gold"    },
 
