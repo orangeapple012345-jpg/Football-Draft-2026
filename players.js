@@ -80,6 +80,7 @@ const PLAYERS = [
   { name:"Kylian Mbappé",         nation:"France",      club:"Real Madrid",        rating:91, attack:93, midfield:86, defense:38, positions:["LW","ST"],      face:"faces/mbappe.png",       rarity:"gold" },
   { name:"Bukayo Saka",           nation:"England",     club:"Arsenal",            rating:89, attack:89, midfield:78, defense:56, positions:["LW","RW"],      face:"faces/saka.png",         rarity:"gold"    },
   { name:"Leroy Sané",            nation:"Germany",     club:"Bayern Munich",      rating:86, attack:86, midfield:72, defense:38, positions:["LW","RW"],      face:"faces/sane.png",         rarity:"gold"    },
+  { name:"Luis Diaz",            nation:"Colombia",     club:"Bayern Munich",      rating:88, attack:89, midfield:84, defense:48, positions:["LW"],      face:"faces/diaz.png",         rarity:"gold"    },
   { name:"Kvicha Kvaratskhelia",       nation:"Georgia",      club:"PSG",          rating:89, attack:90, midfield:87, defense:44, positions:["LW", "RW"],      face:"faces/kvara.png",      rarity:"gold"    },
   { name:"Ousmane Dembélé",       nation:"France",      club:"PSG",                rating:90, attack:91, midfield:86, defense:42, positions:["ST","RW"],      face:"faces/dembele.png",      rarity:"gold"    },
   { name:"Rafael Leão",           nation:"Portugal",    club:"AC Milan",           rating:86, attack:88, midfield:66, defense:30, positions:["LW","ST"],      face:"faces/leao.png",         rarity:"gold"    },
@@ -94,7 +95,7 @@ const PLAYERS = [
   { name:"Federico Chiesa",       nation:"Italy",       club:"Liverpool",          rating:83, attack:83, midfield:68, defense:40, positions:["RW","LW"],      face:"faces/chiesa.png",       rarity:"silver"  },
 
   // ── STRIKERS ──────────────────────────────────────────────
-  { name:"Erling Haaland",        nation:"Norway",      club:"Man City",           rating:90, attack:93, midfield:78, defense:45, positions:["ST"],           face:"faces/haaland.png",      rarity:"special" },
+  { name:"Erling Haaland",        nation:"Norway",      club:"Man City",           rating:90, attack:93, midfield:78, defense:45, positions:["ST"],           face:"faces/haaland.png",      rarity:"gold" },
   { name:"Harry Kane",            nation:"England",     club:"Bayern Munich",      rating:91, attack:94, midfield:86, defense:49, positions:["ST"],           face:"faces/kane.png",         rarity:"gold"    },
   { name:"Robert Lewandowski",    nation:"Poland",      club:"Barcelona",          rating:90, attack:91, midfield:68, defense:26, positions:["ST"],           face:"faces/lewandowski.png",  rarity:"gold"    },
   { name:"Victor Osimhen",        nation:"Nigeria",     club:"Galatasaray",        rating:88, attack:89, midfield:60, defense:24, positions:["ST"],           face:"faces/osimhen.png",      rarity:"gold"    },
