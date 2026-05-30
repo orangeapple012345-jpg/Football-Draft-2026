@@ -92,7 +92,7 @@ const PLAYERS = [
 
   // ── STRIKERS ──────────────────────────────────────────────
   { name:"Erling Haaland",        nation:"Norway",      club:"Man City",           rating:94, attack:95, midfield:58, defense:22, positions:["ST"],           face:"faces/haaland.png",      rarity:"special" },
-  { name:"Harry Kane",            nation:"England",     club:"Bayern Munich",      rating:91, attack:92, midfield:72, defense:28, positions:["ST"],           face:"faces/kane.png",         rarity:"gold"    },
+  { name:"Harry Kane",            nation:"England",     club:"Bayern Munich",      rating:91, attack:94, midfield:86, defense:49, positions:["ST"],           face:"faces/kane.png",         rarity:"gold"    },
   { name:"Robert Lewandowski",    nation:"Poland",      club:"Barcelona",          rating:90, attack:91, midfield:68, defense:26, positions:["ST"],           face:"faces/lewandowski.png",  rarity:"gold"    },
   { name:"Victor Osimhen",        nation:"Nigeria",     club:"Galatasaray",        rating:88, attack:89, midfield:60, defense:24, positions:["ST"],           face:"faces/osimhen.png",      rarity:"gold"    },
   { name:"Lautaro Martínez",      nation:"Argentina",   club:"Inter Milan",        rating:88, attack:89, midfield:66, defense:30, positions:["ST"],           face:"faces/lautaro.png",      rarity:"gold"    },
