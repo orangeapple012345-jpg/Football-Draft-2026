@@ -97,6 +97,8 @@ const PLAYERS = [
   { name:"Michael Olise",          nation:"France",      club:"Bayern Munich",        rating:89, attack:89, midfield:88, defense:46, positions:["RW"],      face:"faces/olise.png",      rarity:"gold"    },
   { name:"Désiré Doué",          nation:"France",      club:"PSG",               rating:86, attack:87, midfield:85, defense:50, positions:["RW"],      face:"faces/doue.png",      rarity:"gold"    },
   { name:"Federico Chiesa",       nation:"Italy",       club:"Liverpool",          rating:83, attack:83, midfield:68, defense:40, positions:["RW","LW"],      face:"faces/chiesa.png",       rarity:"silver"  },
+  { name:"Lionel Messi",       nation:"Argentina",       club:"Inter Miami",          rating:86, attack:87, midfield:89, defense:29, positions:["RW","CAM"],      face:"faces/messi.png",       rarity:"gold"  },
+
 
   // ── STRIKERS ──────────────────────────────────────────────
   { name:"Erling Haaland",        nation:"Norway",      club:"Man City",           rating:90, attack:93, midfield:78, defense:45, positions:["ST"],           face:"faces/haaland.png",      rarity:"gold" },
