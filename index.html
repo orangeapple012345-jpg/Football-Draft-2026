@@ -363,11 +363,14 @@ const LAYOUT = [
 function getPlayersForSlot(slot) {
   let eligible;
   if (slot === "CDM") {
-    eligible = PLAYERS.filter(p => p.positions.includes("CDM") || p.positions.includes("CM"));
+    // Only players with CDM in their positions
+    eligible = PLAYERS.filter(p => p.positions.includes("CDM"));
   } else if (slot === "CM") {
-    eligible = PLAYERS.filter(p => p.positions.includes("CM") || p.positions.includes("CDM") || p.positions.includes("CAM"));
+    // Only players with CM in their positions
+    eligible = PLAYERS.filter(p => p.positions.includes("CM"));
   } else if (slot === "CAM") {
-    eligible = PLAYERS.filter(p => p.positions.includes("CAM") || p.positions.includes("CM"));
+    // Only players with CAM in their positions
+    eligible = PLAYERS.filter(p => p.positions.includes("CAM"));
   } else {
     eligible = PLAYERS.filter(p => p.positions.includes(slot));
   }
