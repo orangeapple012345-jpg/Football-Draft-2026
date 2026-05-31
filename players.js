@@ -106,7 +106,7 @@ const PLAYERS = [
   { name:"Harry Kane",            nation:"England",     club:"Bayern Munich",      rating:91, attack:94, midfield:86, defense:49, positions:["ST"],           face:"faces/kane.png",         rarity:"gold"    },
   { name:"Robert Lewandowski",    nation:"Poland",      club:"Barcelona",          rating:86, attack:89, midfield:80, defense:42, positions:["ST"],           face:"faces/lewandowski.png",  rarity:"gold"    },
   { name:"Victor Osimhen",        nation:"Nigeria",     club:"Galatasaray",        rating:88, attack:89, midfield:60, defense:24, positions:["ST"],           face:"faces/osimhen.png",      rarity:"gold"    },
-  { name:"Lautaro Martínez",      nation:"Argentina",   club:"Inter Milan",        rating:88, attack:89, midfield:66, defense:30, positions:["ST"],           face:"faces/lautaro.png",      rarity:"gold"    },
+  { name:"Lautaro Martínez",      nation:"Argentina",   club:"Inter Milan",        rating:87, attack:89, midfield:82, defense:52, positions:["ST"],           face:"faces/lautaro.png",      rarity:"gold"    },
   { name:"Darwin Núñez",          nation:"Uruguay",     club:"Liverpool",          rating:84, attack:85, midfield:58, defense:25, positions:["ST","LW"],      face:"faces/nunez.png",        rarity:"gold"    },
   { name:"Julian Alvarez",        nation:"Argentina",      club:"Atletico Madrid",     rating:87, attack:89, midfield:84, defense:56, positions:["ST"],           face:"faces/alvarez.png",       rarity:"gold"  },
 
