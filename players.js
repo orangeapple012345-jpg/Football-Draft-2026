@@ -39,6 +39,7 @@ const PLAYERS = [
 
   // ── LEFT BACKS ────────────────────────────────────────────
   { name:"Alphonso Davies",       nation:"Canada",      club:"Bayern Munich",      rating:86, attack:79, midfield:72, defense:82, positions:["LB"],           face:"faces/davies.png",       rarity:"gold"    },
+  { name:"Federico Dimarco",      nation:"Italy",     club:"Inter Milan",       rating:86, attack:81, midfield:85, defense:84, positions:["LB"],           face:"faces/dimarco.png",     rarity:"gold"    },
   { name:"Nuno Mendes",           nation:"Portugal",      club:"PSG",      rating:88, attack:80, midfield:84, defense:87, positions:["LB"],           face:"faces/mendes.png",       rarity:"gold"    },
   { name:"Andrew Robertson",      nation:"Scotland",    club:"Liverpool",          rating:85, attack:72, midfield:74, defense:84, positions:["LB"],           face:"faces/robertson.png",    rarity:"gold"    },
   { name:"Theo Hernandez",        nation:"France",      club:"AC Milan",           rating:85, attack:80, midfield:70, defense:81, positions:["LB"],           face:"faces/theohernandez.png",rarity:"gold"    },
