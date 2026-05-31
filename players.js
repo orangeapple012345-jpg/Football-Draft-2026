@@ -54,7 +54,7 @@ const PLAYERS = [
   { name:"Kim Min-jae",           nation:"South Korea", club:"Bayern Munich",      rating:86, attack:28, midfield:42, defense:86, positions:["CB"],           face:"faces/kiminjae.png",     rarity:"gold"    },
 
   // ── CDM ───────────────────────────────────────────────────
-  { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:88, attack:78, midfield:88, defense:87, positions:["CDM"],     face:"faces/rodri.png",        rarity:"special" },
+  { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:88, attack:78, midfield:88, defense:87, positions:["CDM"],     face:"faces/rodri.png",        rarity:"gold" },
   { name:"Casemiro",              nation:"Brazil",      club:"Man United",         rating:86, attack:55, midfield:84, defense:84, positions:["CDM"],          face:"faces/casemiro.png",     rarity:"gold"    },
   { name:"Declan Rice",           nation:"England",     club:"Arsenal",            rating:89, attack:79, midfield:89, defense:88, positions:["CDM","CM"],     face:"faces/rice.png",   rarity:"gold"    },
   { name:"Joshua Kimmich",        nation:"Germany",     club:"Bayern Munich",      rating:89, attack:81, midfield:90, defense:85, positions:["CDM"],     face:"faces/kimmich.png",   rarity:"gold"    },
