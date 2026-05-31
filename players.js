@@ -21,7 +21,7 @@ const PLAYERS = [
   { name:"Thibaut Courtois",      nation:"Belgium",     club:"Real Madrid",       rating:90, attack:18, midfield:54, defense:92, positions:["GK"],           face:"faces/courtois.png",     rarity:"gold"    },
   { name:"Alisson Becker",        nation:"Brazil",      club:"Liverpool",          rating:90, attack:8,  midfield:12, defense:90, positions:["GK"],           face:"faces/alisson.png",      rarity:"gold"    },
   { name:"Manuel Neuer",          nation:"Germany",     club:"Bayern Munich",      rating:89, attack:10, midfield:14, defense:89, positions:["GK"],           face:"faces/neuer.png",        rarity:"gold"    },
-  { name:"Marc-André ter Stegen", nation:"Germany",     club:"Barcelona",          rating:88, attack:9,  midfield:13, defense:88, positions:["GK"],           face:"faces/terstegen.png",    rarity:"gold"    },
+  { name: "Gianluigi Donnarumma", nation:"Italy",     club:"Man City",          rating:89, attack:16,  midfield:50, defense:91, positions:["GK"],           face:"faces/donnarumma.png",    rarity:"gold"    },
   { name:"Ederson",               nation:"Brazil",      club:"Man City",           rating:88, attack:11, midfield:15, defense:88, positions:["GK"],           face:"faces/ederson.png",      rarity:"gold"    },
   { name:"Jordan Pickford",       nation:"England",     club:"Everton",            rating:82, attack:7,  midfield:10, defense:82, positions:["GK"],           face:"faces/pickford.png",     rarity:"silver"  },
 
