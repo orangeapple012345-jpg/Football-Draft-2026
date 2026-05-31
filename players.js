@@ -80,7 +80,7 @@ const PLAYERS = [
   { name:"Bruno Fernandes",       nation:"Portugal",    club:"Man United",         rating:89, attack:86, midfield:91, defense:71, positions:["CAM","CM"],     face:"faces/fernandes.png",    rarity:"gold"   },
   { name:"Bernardo Silva",        nation:"Portugal",    club:"Man City",           rating:87, attack:82, midfield:86, defense:65, positions:["CAM","CM","RW"],face:"faces/bernardo.png",     rarity:"gold"    },
   { name:"Jamal Musiala",        nation:"Germany",     club:"Bayern Munich",        rating:87, attack:87, midfield:88, defense:46, positions:["CAM","LW"],     face:"faces/musiala.png",     rarity:"gold"    },
-  { name:"Dominik Szoboszlai",    nation:"Hungary",     club:"Liverpool",          rating:87, attack:84, midfield:88, defense:74, positions:["CAM","RW", "CM", "RB"],     face:"faces/szob.png",     rarity:"gold"    },
+  { name:"Dominik Szoboszlai",    nation:"Hungary",     club:"Liverpool",          rating:87, attack:84, midfield:88, defense:75, positions:["CAM","RW", "CM", "RB"],     face:"faces/szob.png",     rarity:"gold"    },
 
   // ── LEFT WING ─────────────────────────────────────────────
   { name:"Vinicius Jr",           nation:"Brazil",      club:"Real Madrid",        rating:89, attack:91, midfield:85, defense:40, positions:["LW"],           face:"faces/vini.png",     rarity:"gold" },
