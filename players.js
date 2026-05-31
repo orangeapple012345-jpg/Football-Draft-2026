@@ -18,7 +18,7 @@
 const PLAYERS = [
 
   // ── GOALKEEPERS ───────────────────────────────────────────
-  { name:"Thibaut Courtois",      nation:"Belgium",     club:"Real Madrid",       rating:91, attack:10, midfield:15, defense:91, positions:["GK"],           face:"faces/courtois.png",     rarity:"gold"    },
+  { name:"Thibaut Courtois",      nation:"Belgium",     club:"Real Madrid",       rating:90, attack:18, midfield:54, defense:92, positions:["GK"],           face:"faces/courtois.png",     rarity:"gold"    },
   { name:"Alisson Becker",        nation:"Brazil",      club:"Liverpool",          rating:90, attack:8,  midfield:12, defense:90, positions:["GK"],           face:"faces/alisson.png",      rarity:"gold"    },
   { name:"Manuel Neuer",          nation:"Germany",     club:"Bayern Munich",      rating:89, attack:10, midfield:14, defense:89, positions:["GK"],           face:"faces/neuer.png",        rarity:"gold"    },
   { name:"Marc-André ter Stegen", nation:"Germany",     club:"Barcelona",          rating:88, attack:9,  midfield:13, defense:88, positions:["GK"],           face:"faces/terstegen.png",    rarity:"gold"    },
@@ -103,7 +103,7 @@ const PLAYERS = [
   // ── STRIKERS ──────────────────────────────────────────────
   { name:"Erling Haaland",        nation:"Norway",      club:"Man City",           rating:90, attack:93, midfield:78, defense:45, positions:["ST"],           face:"faces/haaland.png",      rarity:"gold" },
   { name:"Harry Kane",            nation:"England",     club:"Bayern Munich",      rating:91, attack:94, midfield:86, defense:49, positions:["ST"],           face:"faces/kane.png",         rarity:"gold"    },
-  { name:"Robert Lewandowski",    nation:"Poland",      club:"Barcelona",          rating:90, attack:91, midfield:68, defense:26, positions:["ST"],           face:"faces/lewandowski.png",  rarity:"gold"    },
+  { name:"Robert Lewandowski",    nation:"Poland",      club:"Barcelona",          rating:86, attack:89, midfield:80, defense:42, positions:["ST"],           face:"faces/lewandowski.png",  rarity:"gold"    },
   { name:"Victor Osimhen",        nation:"Nigeria",     club:"Galatasaray",        rating:88, attack:89, midfield:60, defense:24, positions:["ST"],           face:"faces/osimhen.png",      rarity:"gold"    },
   { name:"Lautaro Martínez",      nation:"Argentina",   club:"Inter Milan",        rating:88, attack:89, midfield:66, defense:30, positions:["ST"],           face:"faces/lautaro.png",      rarity:"gold"    },
   { name:"Darwin Núñez",          nation:"Uruguay",     club:"Liverpool",          rating:84, attack:85, midfield:58, defense:25, positions:["ST","LW"],      face:"faces/nunez.png",        rarity:"gold"    },
