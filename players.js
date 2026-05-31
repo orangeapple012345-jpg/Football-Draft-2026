@@ -19,6 +19,7 @@ const PLAYERS = [
 
   // ── GOALKEEPERS ───────────────────────────────────────────
   { name:"Thibaut Courtois",      nation:"Belgium",     club:"Real Madrid",       rating:90, attack:18, midfield:54, defense:92, positions:["GK"],           face:"faces/courtois.png",     rarity:"gold"    },
+  { name:"Gregor Kobel",          nation:"Switzerland",     club:"Borussia Dortmund",   rating:86, attack:11, midfield:52, defense:87, positions:["GK"],           face:"faces/kobel.png",     rarity:"gold"    },
   { name:"Alisson Becker",        nation:"Brazil",      club:"Liverpool",          rating:90, attack:8,  midfield:12, defense:90, positions:["GK"],           face:"faces/alisson.png",      rarity:"gold"    },
   { name:"Manuel Neuer",          nation:"Germany",     club:"Bayern Munich",      rating:89, attack:10, midfield:14, defense:89, positions:["GK"],           face:"faces/neuer.png",        rarity:"gold"    },
   { name: "Gianluigi Donnarumma", nation:"Italy",     club:"Man City",          rating:89, attack:16,  midfield:50, defense:91, positions:["GK"],           face:"faces/donnarumma.png",    rarity:"gold"    },
