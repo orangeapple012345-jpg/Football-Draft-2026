@@ -22,7 +22,7 @@ const PLAYERS = [
   { name:"Alisson Becker",        nation:"Brazil",      club:"Liverpool",          rating:90, attack:8,  midfield:12, defense:90, positions:["GK"],           face:"faces/alisson.png",      rarity:"gold"    },
   { name:"Manuel Neuer",          nation:"Germany",     club:"Bayern Munich",      rating:89, attack:10, midfield:14, defense:89, positions:["GK"],           face:"faces/neuer.png",        rarity:"gold"    },
   { name: "Gianluigi Donnarumma", nation:"Italy",     club:"Man City",          rating:89, attack:16,  midfield:50, defense:91, positions:["GK"],           face:"faces/donnarumma.png",    rarity:"gold"    },
-  { name:"Ederson",               nation:"Brazil",      club:"Man City",           rating:88, attack:11, midfield:15, defense:88, positions:["GK"],           face:"faces/ederson.png",      rarity:"gold"    },
+  { name:"David Raya",               nation:"Spain",      club:"Arsenal",           rating:88, attack:14, midfield:60, defense:89, positions:["GK"],           face:"faces/raya.png",      rarity:"gold"    },
   { name:"Jordan Pickford",       nation:"England",     club:"Everton",            rating:82, attack:7,  midfield:10, defense:82, positions:["GK"],           face:"faces/pickford.png",     rarity:"silver"  },
 
   // ── RIGHT BACKS ───────────────────────────────────────────
@@ -54,7 +54,7 @@ const PLAYERS = [
   { name:"Kim Min-jae",           nation:"South Korea", club:"Bayern Munich",      rating:86, attack:28, midfield:42, defense:86, positions:["CB"],           face:"faces/kiminjae.png",     rarity:"gold"    },
 
   // ── CDM ───────────────────────────────────────────────────
-  { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:91, attack:62, midfield:91, defense:86, positions:["CDM","CM"],     face:"faces/rodri.png",        rarity:"special" },
+  { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:88, attack:78, midfield:88, defense:87, positions:["CDM"],     face:"faces/rodri.png",        rarity:"special" },
   { name:"Casemiro",              nation:"Brazil",      club:"Man United",         rating:86, attack:55, midfield:84, defense:84, positions:["CDM"],          face:"faces/casemiro.png",     rarity:"gold"    },
   { name:"Declan Rice",           nation:"England",     club:"Arsenal",            rating:89, attack:79, midfield:89, defense:88, positions:["CDM","CM"],     face:"faces/rice.png",   rarity:"gold"    },
   { name:"Joshua Kimmich",        nation:"Germany",     club:"Bayern Munich",      rating:89, attack:81, midfield:90, defense:85, positions:["CDM"],     face:"faces/kimmich.png",   rarity:"gold"    },
