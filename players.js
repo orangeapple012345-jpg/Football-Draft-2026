@@ -23,7 +23,8 @@ const PLAYERS = [
   { name:"Manuel Neuer",          nation:"Germany",     club:"Bayern Munich",      rating:89, attack:10, midfield:14, defense:89, positions:["GK"],           face:"faces/neuer.png",        rarity:"gold"    },
   { name: "Gianluigi Donnarumma", nation:"Italy",     club:"Man City",          rating:89, attack:16,  midfield:50, defense:91, positions:["GK"],           face:"faces/donnarumma.png",    rarity:"gold"    },
   { name:"David Raya",               nation:"Spain",      club:"Arsenal",           rating:88, attack:14, midfield:60, defense:89, positions:["GK"],           face:"faces/raya.png",      rarity:"gold"    },
-  { name:"Jordan Pickford",       nation:"England",     club:"Everton",            rating:82, attack:7,  midfield:10, defense:82, positions:["GK"],           face:"faces/pickford.png",     rarity:"silver"  },
+  { name:"Jordan Pickford",       nation:"England",     club:"Everton",            rating:82, attack:7,  midfield:10, defense:82, positions:["GK"],           face:"faces/pickford.png",     rarity:"gold"  },
+  { name:"Mike Maignan",       nation:"France",     club:"AC Milan",            rating:87, attack:15,  midfield:58, defense:88, positions:["GK"],           face:"faces/maignan.png",     rarity:"gold"  },
 
   // ── RIGHT BACKS ───────────────────────────────────────────
   { name:"Trent Alexander-Arnold",nation:"England",     club:"Liverpool",          rating:87, attack:80, midfield:78, defense:82, positions:["RB"],           face:"faces/trent.png",        rarity:"gold"    },
