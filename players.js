@@ -57,13 +57,14 @@ const PLAYERS = [
   { name:"Rodri",                 nation:"Spain",       club:"Man City",           rating:91, attack:62, midfield:91, defense:86, positions:["CDM","CM"],     face:"faces/rodri.png",        rarity:"special" },
   { name:"Casemiro",              nation:"Brazil",      club:"Man United",         rating:86, attack:55, midfield:84, defense:84, positions:["CDM"],          face:"faces/casemiro.png",     rarity:"gold"    },
   { name:"Declan Rice",           nation:"England",     club:"Arsenal",            rating:89, attack:79, midfield:89, defense:88, positions:["CDM","CM"],     face:"faces/rice.png",   rarity:"gold"    },
+  { name:"Joshua Kimmich",        nation:"Germany",     club:"Bayern Munich",      rating:89, attack:81, midfield:90, defense:85, positions:["CDM"],     face:"faces/kimmich.png",   rarity:"gold"    },
   { name:"Aurélien Tchouaméni",   nation:"France",      club:"Real Madrid",        rating:85, attack:58, midfield:83, defense:82, positions:["CDM","CM"],     face:"faces/tchouameni.png",   rarity:"gold"    },
   { name:"Enzo Fernández",        nation:"Argentina",   club:"Chelsea",            rating:84, attack:65, midfield:84, defense:76, positions:["CDM","CM"],     face:"faces/enzo.png",         rarity:"gold"    },
   { name:"Granit Xhaka",          nation:"Switzerland", club:"Bayer Leverkusen",   rating:83, attack:60, midfield:82, defense:78, positions:["CDM","CM"],     face:"faces/xhaka.png",        rarity:"silver"  },
 
   // ── CM ────────────────────────────────────────────────────
   { name:"Jude Bellingham",       nation:"England",     club:"Real Madrid",        rating:89, attack:87, midfield:90, defense:82, positions:["CM","CAM"],     face:"faces/bellingham.png",   rarity:"gold" },
-  { name:"Kevin De Bruyne",       nation:"Belgium",     club:"Man City",           rating:91, attack:86, midfield:91, defense:64, positions:["CM","CAM"],     face:"faces/debruyne.png",     rarity:"special" },
+  { name: "Kevin De Bruyne",       nation:"Belgium",     club:"Man City",           rating:91, attack:86, midfield:91, defense:64, positions:["CM","CAM"],     face:"faces/debruyne.png",     rarity:"gold" },
   { name:"Luka Modric",           nation:"Croatia",     club:"Real Madrid",        rating:88, attack:74, midfield:89, defense:72, positions:["CM"],           face:"faces/modric.png",       rarity:"gold"    },
   { name:"Federico Valverde",     nation:"Uruguay",     club:"Real Madrid",        rating:88, attack:84, midfield:89, defense:83, positions:["CM", "RB"],      face:"faces/valverde.png",        rarity:"gold"    },
   { name:"Martin Ødegaard",       nation:"Norway",      club:"Arsenal",            rating:88, attack:82, midfield:88, defense:60, positions:["CM","CAM"],     face:"faces/odegaard.png",     rarity:"gold"    },
