@@ -43,7 +43,7 @@ const PLAYERS = [
   { name:"Ferdi Kadioglu",        nation:"Turkey",      club:"Fenerbahce",         rating:79, attack:70, midfield:68, defense:78, positions:["LB"],           face:"faces/kadioglu.png",     rarity:"silver"  },
 
   // ── CENTRE BACKS ──────────────────────────────────────────
-  { name:"Virgil van Dijk",       nation:"Netherlands", club:"Liverpool",          rating:90, attack:40, midfield:52, defense:90, positions:["CB"],           face:"faces/vandijk.png",      rarity:"gold"    },
+  { name:"Virgil van Dijk",       nation:"Netherlands", club:"Liverpool",          rating:87, attack:61, midfield:81, defense:89, positions:["CB"],           face:"faces/vandijk.png",      rarity:"gold"    },
   { name:"Rúben Dias",            nation:"Portugal",    club:"Man City",           rating:89, attack:35, midfield:50, defense:89, positions:["CB"],           face:"faces/rubendias.png",    rarity:"gold"    },
   { name:"Antonio Rüdiger",       nation:"Germany",     club:"Real Madrid",        rating:87, attack:38, midfield:48, defense:87, positions:["CB"],           face:"faces/rudiger.png",      rarity:"gold"    },
   { name:"William Saliba",        nation:"France",      club:"Arsenal",            rating:87, attack:32, midfield:46, defense:87, positions:["CB"],           face:"faces/saliba.png",       rarity:"gold"    },
@@ -89,7 +89,7 @@ const PLAYERS = [
   { name:"Rafael Leão",           nation:"Portugal",    club:"AC Milan",           rating:86, attack:88, midfield:66, defense:30, positions:["LW","ST"],      face:"faces/leao.png",         rarity:"gold"    },
 
   // ── RIGHT WING ────────────────────────────────────────────
-  { name:"Mohamed Salah",         nation:"Egypt",       club:"Liverpool",          rating:91, attack:91, midfield:72, defense:44, positions:["RW","ST"],      face:"faces/salah.png",        rarity:"gold"    },
+  { name:"Mohamed Salah",         nation:"Egypt",       club:"Liverpool",          rating:87, attack:88, midfield:84, defense:44, positions:["RW"],      face:"faces/salah.png",        rarity:"gold"    },
   { name:"Phil Foden",            nation:"England",     club:"Man City",           rating:90, attack:89, midfield:84, defense:44, positions:["RW","LW","CAM"],face:"faces/foden.png",        rarity:"gold"    },
   { name:"Florian Wirtz",         nation:"Germany",     club:"Bayer Leverkusen",   rating:89, attack:88, midfield:86, defense:42, positions:["RW","CAM"],     face:"faces/wirtz.png",        rarity:"gold" },
   { name:"Rodrygo",               nation:"Brazil",      club:"Real Madrid",        rating:85, attack:85, midfield:72, defense:36, positions:["RW","LW"],      face:"faces/rodrygo.png",      rarity:"gold"    },
