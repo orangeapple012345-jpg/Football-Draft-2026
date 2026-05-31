@@ -54,7 +54,7 @@ const PLAYERS = [
   { name:"William Saliba",        nation:"France",      club:"Arsenal",            rating:88, attack:56, midfield:82, defense:90, positions:["CB"],           face:"faces/saliba.png",       rarity:"gold"    },
   { name:"Gabriel",               nation:"Brazil",      club:"Arsenal",            rating:89, attack:58, midfield:79, defense:91, positions:["CB"],            face:"faces/gabriel.png",       rarity:"gold"    },
   { name:"William Pacho",         nation:"Ecuador",      club:"PSG",            rating:87, attack:54, midfield:79, defense:89, positions:["CB"],               face:"faces/pacho.png",       rarity:"gold"    },
-  { name:"Marquinhos",            nation:"Brazil",      club:"PSG",                rating:87, attack:36, midfield:55, defense:87, positions:["CB"],     face:"faces/marquinhos.png",   rarity:"gold"    },
+  { name:"Marquinhos",            nation:"Brazil",      club:"PSG",                rating:87, attack:58, midfield:82, defense:88, positions:["CB"],     face:"faces/marquinhos.png",   rarity:"gold"    },
   { name:"Alessandro Bastoni",    nation:"Italy",       club:"Inter Milan",        rating:87, attack:59, midfield:83, defense:89, positions:["CB"],           face:"faces/bastoni.png",      rarity:"gold"    },
   { name:"Eder Militao",          nation:"Brazil",      club:"Real Madrid",        rating:86, attack:30, midfield:44, defense:86, positions:["CB"],           face:"faces/militao.png",      rarity:"gold"    },
   { name:"Kim Min-jae",           nation:"South Korea", club:"Bayern Munich",      rating:86, attack:28, midfield:42, defense:86, positions:["CB"],           face:"faces/kiminjae.png",     rarity:"gold"    },
