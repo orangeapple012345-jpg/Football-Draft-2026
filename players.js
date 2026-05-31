@@ -46,7 +46,7 @@ const PLAYERS = [
   { name:"Virgil van Dijk",       nation:"Netherlands", club:"Liverpool",          rating:87, attack:61, midfield:81, defense:89, positions:["CB"],           face:"faces/vandijk.png",      rarity:"gold"    },
   { name:"Rúben Dias",            nation:"Portugal",    club:"Man City",           rating:89, attack:35, midfield:50, defense:89, positions:["CB"],           face:"faces/rubendias.png",    rarity:"gold"    },
   { name:"Antonio Rüdiger",       nation:"Germany",     club:"Real Madrid",        rating:87, attack:38, midfield:48, defense:87, positions:["CB"],           face:"faces/rudiger.png",      rarity:"gold"    },
-  { name:"William Saliba",        nation:"France",      club:"Arsenal",            rating:87, attack:32, midfield:46, defense:87, positions:["CB"],           face:"faces/saliba.png",       rarity:"gold"    },
+  { name:"William Saliba",        nation:"France",      club:"Arsenal",            rating:88, attack:56, midfield:82, defense:90, positions:["CB"],           face:"faces/saliba.png",       rarity:"gold"    },
   { name:"Gabriel",               nation:"Brazil",      club:"Arsenal",            rating:89, attack:58, midfield:79, defense:91, positions:["CB"],           face:"faces/gabriel.png",       rarity:"gold"    },
   { name:"Marquinhos",            nation:"Brazil",      club:"PSG",                rating:87, attack:36, midfield:55, defense:87, positions:["CB","CDM"],     face:"faces/marquinhos.png",   rarity:"gold"    },
   { name:"Alessandro Bastoni",    nation:"Italy",       club:"Inter Milan",        rating:86, attack:42, midfield:60, defense:85, positions:["CB"],           face:"faces/bastoni.png",      rarity:"gold"    },
