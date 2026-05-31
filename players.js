@@ -66,6 +66,7 @@ const PLAYERS = [
   { name:"Jude Bellingham",       nation:"England",     club:"Real Madrid",        rating:89, attack:87, midfield:90, defense:82, positions:["CM","CAM"],     face:"faces/bellingham.png",   rarity:"gold" },
   { name: "Kevin De Bruyne",       nation:"Belgium",     club:"Man City",           rating:91, attack:86, midfield:91, defense:64, positions:["CM","CAM"],     face:"faces/debruyne.png",     rarity:"gold" },
   { name:"Luka Modric",           nation:"Croatia",     club:"Real Madrid",        rating:88, attack:74, midfield:89, defense:72, positions:["CM"],           face:"faces/modric.png",       rarity:"gold"    },
+  { name:"Nicolò Barella",           nation:"Italy",     club:"Inter",        rating:86, attack:80, midfield:88, defense:81, positions:["CM"],           face:"faces/barella.png",       rarity:"gold"    },
   { name:"Federico Valverde",     nation:"Uruguay",     club:"Real Madrid",        rating:88, attack:84, midfield:89, defense:83, positions:["CM", "RB"],      face:"faces/valverde.png",        rarity:"gold"    },
   { name:"Martin Ødegaard",       nation:"Norway",      club:"Arsenal",            rating:88, attack:82, midfield:88, defense:60, positions:["CM","CAM"],     face:"faces/odegaard.png",     rarity:"gold"    },
   { name:"Pedri",                 nation:"Spain",       club:"Barcelona",          rating:90, attack:85, midfield:92, defense:74, positions:["CM"],     face:"faces/pedri.png",        rarity:"gold"    },
