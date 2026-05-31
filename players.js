@@ -75,7 +75,7 @@ const PLAYERS = [
   // ── CAM ───────────────────────────────────────────────────
   { name:"Bruno Fernandes",       nation:"Portugal",    club:"Man United",         rating:89, attack:86, midfield:91, defense:71, positions:["CAM","CM"],     face:"faces/fernandes.png",    rarity:"gold"   },
   { name:"Bernardo Silva",        nation:"Portugal",    club:"Man City",           rating:87, attack:82, midfield:86, defense:65, positions:["CAM","CM","RW"],face:"faces/bernardo.png",     rarity:"gold"    },
-  { name:"Ilkay Gündogan",        nation:"Germany",     club:"Barcelona",          rating:85, attack:78, midfield:86, defense:62, positions:["CAM","CM"],     face:"faces/gundogan.png",     rarity:"gold"    },
+  { name:"Jamal Musiala",        nation:"Germany",     club:"Bayern Munich",        rating:87, attack:87, midfield:88, defense:46, positions:["CAM","LW"],     face:"faces/musiala.png",     rarity:"gold"    },
   { name:"James Maddison",        nation:"England",     club:"Tottenham",          rating:83, attack:80, midfield:83, defense:52, positions:["CAM","RW"],     face:"faces/maddison.png",     rarity:"gold"    },
 
   // ── LEFT WING ─────────────────────────────────────────────
@@ -91,7 +91,7 @@ const PLAYERS = [
   // ── RIGHT WING ────────────────────────────────────────────
   { name:"Mohamed Salah",         nation:"Egypt",       club:"Liverpool",          rating:91, attack:91, midfield:72, defense:44, positions:["RW","ST"],      face:"faces/salah.png",        rarity:"gold"    },
   { name:"Phil Foden",            nation:"England",     club:"Man City",           rating:90, attack:89, midfield:84, defense:44, positions:["RW","LW","CAM"],face:"faces/foden.png",        rarity:"gold"    },
-  { name:"Florian Wirtz",         nation:"Germany",     club:"Bayer Leverkusen",   rating:89, attack:88, midfield:86, defense:42, positions:["RW","CAM"],     face:"faces/wirtz.png",        rarity:"special" },
+  { name:"Florian Wirtz",         nation:"Germany",     club:"Bayer Leverkusen",   rating:89, attack:88, midfield:86, defense:42, positions:["RW","CAM"],     face:"faces/wirtz.png",        rarity:"gold" },
   { name:"Rodrygo",               nation:"Brazil",      club:"Real Madrid",        rating:85, attack:85, midfield:72, defense:36, positions:["RW","LW"],      face:"faces/rodrygo.png",      rarity:"gold"    },
   { name:"Lamine Yamal",          nation:"Spain",      club:"Barcelona",         rating:91, attack:91, midfield:90, defense:41, positions:["RW"],      face:"faces/yamal.png",      rarity:"gold"    },
   { name:"Michael Olise",          nation:"France",      club:"Bayern Munich",        rating:89, attack:89, midfield:88, defense:46, positions:["RW"],      face:"faces/olise.png",      rarity:"gold"    },
