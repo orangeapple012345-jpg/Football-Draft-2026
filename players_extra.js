@@ -1,0 +1,258 @@
+// ═══════════════════════════════════════════════════════════════
+//  EXTRA PLAYERS — Legends with full extended attributes
+//  Added to support deep engine calculations
+// ═══════════════════════════════════════════════════════════════
+
+const EXTRA_PLAYERS=[
+
+  // ── LOTHAR MATTHÄUS ─────────────────────────────────────
+  {
+    name:"Lothar Matthäus — 89/90",playerGroup:"lothar-matthaus",
+    nation:"Germany",club:"Inter Milan",
+    position:"CDM",secondaryPositions:["CM"],
+    overall:95,attack:82,midfield:94,defense:88,
+    pace:78,physical:90,technical:88,intelligence:96,
+    workRate:94,creativity:82,finishing:78,passing:88,
+    dribbling:80,pressing:88,aerial:78,stamina:94,
+    defensiveAwareness:92,tackling:90,positioning:92,
+    transitionThreat:78,pressResistance:90,bigGameRating:96,
+    consistency:92,leadership:96,versatility:90,weakFoot:84,
+    setPieces:74,crossing:66,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["boxToBox","hardTackler","leader","bigGamePlayer","goalScoringMidfielder","intelligentPositioner"],
+    playstyles:["organised","counterAttack","highPress"],
+    positions:["CDM"],face:"faces/default.png",rarity:"special"
+  },
+  {
+    name:"Lothar Matthäus — 91/92",playerGroup:"lothar-matthaus",
+    nation:"Germany",club:"Bayern Munich",
+    position:"CDM",secondaryPositions:["CM"],
+    overall:91,attack:78,midfield:90,defense:86,
+    pace:72,physical:88,technical:84,intelligence:94,
+    workRate:92,creativity:78,finishing:72,passing:84,
+    dribbling:76,pressing:84,aerial:76,stamina:90,
+    defensiveAwareness:90,tackling:88,positioning:90,
+    transitionThreat:72,pressResistance:88,bigGameRating:92,
+    consistency:90,leadership:94,versatility:86,weakFoot:82,
+    setPieces:70,crossing:62,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["boxToBox","hardTackler","leader","bigGamePlayer","intelligentPositioner"],
+    playstyles:["organised","counterAttack"],
+    positions:["CDM"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── LIONEL MESSI ────────────────────────────────────────
+  {
+    name:"Lionel Messi — 11/12",playerGroup:"lionel-messi",
+    nation:"Argentina",club:"Barcelona",
+    position:"RW",secondaryPositions:["CAM","ST"],
+    overall:99,attack:98,midfield:88,defense:32,
+    pace:88,physical:66,technical:99,intelligence:98,
+    workRate:70,creativity:99,finishing:96,passing:92,
+    dribbling:99,pressing:62,aerial:60,stamina:76,
+    defensiveAwareness:30,tackling:26,positioning:96,
+    transitionThreat:90,pressResistance:96,bigGameRating:98,
+    consistency:96,leadership:84,versatility:88,weakFoot:86,
+    setPieces:90,crossing:82,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["dribbleMaestro","eliteFinisher","visionPasser","chanceCreator","bigGamePlayer","calmUnderPressure","insideForward","setPieceExpert"],
+    playstyles:["possession","direct","counterAttack"],
+    positions:["RW"],face:"faces/default.png",rarity:"special"
+  },
+  {
+    name:"Lionel Messi — 14/15",playerGroup:"lionel-messi",
+    nation:"Argentina",club:"Barcelona",
+    position:"RW",secondaryPositions:["CAM","ST"],
+    overall:98,attack:97,midfield:86,defense:30,
+    pace:86,physical:64,technical:98,intelligence:97,
+    workRate:68,creativity:98,finishing:95,passing:91,
+    dribbling:98,pressing:60,aerial:58,stamina:74,
+    defensiveAwareness:28,tackling:24,positioning:95,
+    transitionThreat:88,pressResistance:95,bigGameRating:97,
+    consistency:95,leadership:82,versatility:86,weakFoot:84,
+    setPieces:88,crossing:80,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["dribbleMaestro","eliteFinisher","visionPasser","chanceCreator","bigGamePlayer","calmUnderPressure","insideForward"],
+    playstyles:["possession","direct"],
+    positions:["RW"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── DIEGO MARADONA ──────────────────────────────────────
+  {
+    name:"Diego Maradona — 85/86",playerGroup:"diego-maradona",
+    nation:"Argentina",club:"Napoli",
+    position:"CAM",secondaryPositions:["RW","ST"],
+    overall:98,attack:96,midfield:90,defense:36,
+    pace:84,physical:72,technical:99,intelligence:96,
+    workRate:78,creativity:99,finishing:90,passing:90,
+    dribbling:99,pressing:68,aerial:64,stamina:80,
+    defensiveAwareness:34,tackling:32,positioning:92,
+    transitionThreat:88,pressResistance:96,bigGameRating:99,
+    consistency:90,leadership:88,versatility:86,weakFoot:90,
+    setPieces:88,crossing:78,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["dribbleMaestro","eliteFinisher","visionPasser","chanceCreator","bigGamePlayer","calmUnderPressure","setPieceExpert"],
+    playstyles:["direct","possession","counterAttack"],
+    positions:["CAM"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── FRANK RIJKAARD ──────────────────────────────────────
+  {
+    name:"Frank Rijkaard — 87/88",playerGroup:"frank-rijkaard",
+    nation:"Netherlands",club:"AC Milan",
+    position:"CDM",secondaryPositions:["CM","CB"],
+    overall:92,attack:65,midfield:88,defense:88,
+    pace:76,physical:88,technical:82,intelligence:92,
+    workRate:90,creativity:72,finishing:58,passing:82,
+    dribbling:72,pressing:86,aerial:86,stamina:92,
+    defensiveAwareness:90,tackling:90,positioning:90,
+    transitionThreat:64,pressResistance:86,bigGameRating:92,
+    consistency:88,leadership:88,versatility:86,weakFoot:80,
+    setPieces:64,crossing:54,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["hardTackler","aerialDominator","protectiveScreener","leader","highWorkRate"],
+    playstyles:["organised","highPress"],
+    positions:["CDM"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── RUUD GULLIT ─────────────────────────────────────────
+  {
+    name:"Ruud Gullit — 87/88",playerGroup:"ruud-gullit",
+    nation:"Netherlands",club:"AC Milan",
+    position:"CAM",secondaryPositions:["ST","CM"],
+    overall:95,attack:92,midfield:88,defense:56,
+    pace:82,physical:88,technical:92,intelligence:90,
+    workRate:82,creativity:92,finishing:86,passing:86,
+    dribbling:90,pressing:72,aerial:88,stamina:84,
+    defensiveAwareness:52,tackling:50,positioning:88,
+    transitionThreat:84,pressResistance:88,bigGameRating:94,
+    consistency:88,leadership:88,versatility:90,weakFoot:84,
+    setPieces:78,crossing:72,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["dribbleMaestro","aerialThreat","bigGamePlayer","versatilePlayer","leader","chanceCreator"],
+    playstyles:["possession","direct"],
+    positions:["CAM"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── FRANCO BARESI ───────────────────────────────────────
+  {
+    name:"Franco Baresi — 88/89",playerGroup:"franco-baresi",
+    nation:"Italy",club:"AC Milan",
+    position:"CB",secondaryPositions:[],
+    overall:95,attack:42,midfield:58,defense:95,
+    pace:78,physical:82,technical:80,intelligence:98,
+    workRate:80,creativity:46,finishing:36,passing:80,
+    dribbling:58,pressing:76,aerial:82,stamina:82,
+    defensiveAwareness:98,tackling:90,positioning:98,
+    transitionThreat:32,pressResistance:88,bigGameRating:96,
+    consistency:94,leadership:96,versatility:54,weakFoot:78,
+    setPieces:66,crossing:40,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["intelligentPositioner","leader","organiser","consistentPerformer"],
+    playstyles:["organised","lowBlock"],
+    positions:["CB"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── PAULO MALDINI ────────────────────────────────────────
+  {
+    name:"Paolo Maldini — 93/94",playerGroup:"paolo-maldini",
+    nation:"Italy",club:"AC Milan",
+    position:"LB",secondaryPositions:["CB"],
+    overall:95,attack:62,midfield:66,defense:94,
+    pace:84,physical:84,technical:82,intelligence:96,
+    workRate:86,creativity:60,finishing:40,passing:76,
+    dribbling:70,pressing:78,aerial:80,stamina:88,
+    defensiveAwareness:96,tackling:92,positioning:96,
+    transitionThreat:54,pressResistance:84,bigGameRating:96,
+    consistency:96,leadership:94,versatility:82,weakFoot:80,
+    setPieces:56,crossing:62,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["disciplinedDefender","intelligentPositioner","leader","consistentPerformer"],
+    playstyles:["organised","lowBlock"],
+    positions:["LB"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── JAVIER ZANETTI ──────────────────────────────────────
+  {
+    name:"Javier Zanetti — 97/98",playerGroup:"javier-zanetti",
+    nation:"Argentina",club:"Inter Milan",
+    position:"RB",secondaryPositions:["CM"],
+    overall:91,attack:72,midfield:74,defense:90,
+    pace:84,physical:84,technical:80,intelligence:90,
+    workRate:96,creativity:64,finishing:46,passing:76,
+    dribbling:72,pressing:84,aerial:72,stamina:96,
+    defensiveAwareness:90,tackling:88,positioning:88,
+    transitionThreat:70,pressResistance:80,bigGameRating:90,
+    consistency:94,leadership:88,versatility:84,weakFoot:76,
+    setPieces:56,crossing:70,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["disciplinedDefender","highWorkRate","consistentPerformer","leader"],
+    playstyles:["organised","counterAttack"],
+    positions:["RB"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── THIAGO SILVA ────────────────────────────────────────
+  {
+    name:"Thiago Silva — 12/13",playerGroup:"thiago-silva",
+    nation:"Brazil",club:"PSG",
+    position:"CB",secondaryPositions:[],
+    overall:92,attack:38,midfield:54,defense:92,
+    pace:72,physical:82,technical:78,intelligence:94,
+    workRate:78,creativity:42,finishing:38,passing:80,
+    dribbling:54,pressing:70,aerial:84,stamina:78,
+    defensiveAwareness:94,tackling:88,positioning:92,
+    transitionThreat:32,pressResistance:82,bigGameRating:88,
+    consistency:90,leadership:92,versatility:50,weakFoot:76,
+    setPieces:68,crossing:40,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["intelligentPositioner","leader","organiser","ballPlayingDefender"],
+    playstyles:["possession","organised"],
+    positions:["CB"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── ANDREA PIRLO ────────────────────────────────────────
+  {
+    name:"Andrea Pirlo — 11/12",playerGroup:"andrea-pirlo",
+    nation:"Italy",club:"AC Milan",
+    position:"CDM",secondaryPositions:["CM"],
+    overall:93,attack:60,midfield:94,defense:72,
+    pace:56,physical:66,technical:96,intelligence:96,
+    workRate:72,creativity:90,finishing:58,passing:96,
+    dribbling:74,pressing:60,aerial:64,stamina:72,
+    defensiveAwareness:80,tackling:70,positioning:90,
+    transitionThreat:52,pressResistance:96,bigGameRating:92,
+    consistency:90,leadership:84,versatility:72,weakFoot:86,
+    setPieces:96,crossing:82,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["metronomeMidfielder","elitePasser","calmUnderPressure","setPieceExpert","visionPasser"],
+    playstyles:["possession","organised"],
+    positions:["CDM"],face:"faces/default.png",rarity:"special"
+  },
+
+  // ── RONALDO NAZÁRIO (additional) ─────────────────────────
+  {
+    name:"Ronaldo R9 — 95/96",playerGroup:"ronaldo-r9-barca",
+    nation:"Brazil",club:"Barcelona",
+    position:"ST",secondaryPositions:[],
+    overall:96,attack:96,midfield:64,defense:22,
+    pace:96,physical:86,technical:92,intelligence:86,
+    workRate:72,creativity:82,finishing:96,passing:70,
+    dribbling:94,pressing:56,aerial:74,stamina:80,
+    defensiveAwareness:20,tackling:18,positioning:94,
+    transitionThreat:96,pressResistance:82,bigGameRating:96,
+    consistency:84,leadership:76,versatility:60,weakFoot:84,
+    setPieces:68,crossing:48,
+    goalkeeperRating:0,reflexes:0,commandOfArea:0,distribution:0,
+    traits:["eliteFinisher","paceAbuser","dribbleMaestro","penaltyBoxPredator","bigGamePlayer","physicalBeast"],
+    playstyles:["direct","counterAttack","vertical"],
+    positions:["ST"],face:"faces/default.png",rarity:"special"
+  },
+
+];
+
+// Merge into PLAYERS array at runtime
+if(typeof PLAYERS!=="undefined"){
+  EXTRA_PLAYERS.forEach(ep=>{
+    if(!PLAYERS.find(p=>p.name===ep.name))PLAYERS.push(ep);
+  });
+}
