@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Draft Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#f5c842;--pitch:#1a6b2e;--pitch2:#155924;
+  --dark:#0d0d0d;--panel:#141414;--border:#2a2a2a;
+  --text:#e8e8e8;--muted:#888;
+  --p1:#3b82f6;--p2:#ef4444;--p1bg:#0f2340;--p2bg:#2a0a0a;
+  --fh:'Bebas Neue',sans-serif;--fb:'Barlow Condensed',sans-serif;
+}
+html,body{height:100%;background:var(--dark);color:var(--text);font-family:var(--fb);font-size:16px;overflow-x:hidden}
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ── INTRO ── */
+#screen-intro{align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 30%,#1a3a1a,#0d0d0d 70%);text-align:center;gap:24px;padding:40px 20px}
+.logo{font-family:var(--fh);font-size:clamp(48px,10vw,90px);letter-spacing:6px;line-height:1;color:var(--gold);text-shadow:0 0 60px rgba(245,200,66,.35)}
+.sub{font-size:20px;letter-spacing:4px;color:var(--muted);text-transform:uppercase}
+.name-inputs{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.name-inputs input{background:#1a1a1a;border:2px solid var(--border);color:var(--text);font-family:var(--fb);font-size:17px;letter-spacing:2px;padding:11px 18px;border-radius:6px;width:210px;text-align:center;transition:border-color .2s}
+.name-inputs input:focus{outline:none;border-color:var(--gold)}
+.name-inputs input::placeholder{color:#555}
+.btn{font-family:var(--fh);font-size:21px;letter-spacing:3px;background:var(--gold);color:#000;border:none;padding:13px 38px;border-radius:6px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,66,.3)}
+.btn:active{transform:none}
+.pitch-decor{width:min(480px,90vw);height:6px;background:repeating-linear-gradient(90deg,var(--pitch) 0 30px,var(--pitch2) 30px 60px);border-radius:3px}
+
+/* ── DRAFT ── */
+#screen-draft{flex-direction:column;height:100vh;overflow:hidden}
+.draft-header{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;background:#111;border-bottom:2px solid var(--border);flex-shrink:0;gap:8px;flex-wrap:wrap}
+.turn-banner{font-family:var(--fh);font-size:18px;letter-spacing:3px}
+.turn-banner.p1{color:var(--p1)}.turn-banner.p2{color:var(--p2)}
+.draft-teams{display:flex;gap:6px}
+.team-pill{font-size:11px;letter-spacing:1px;padding:4px 10px;border-radius:4px;font-weight:700}
+.team-pill.p1{background:var(--p1bg);color:var(--p1);border:1px solid var(--p1)}
+.team-pill.p2{background:var(--p2bg);color:var(--p2);border:1px solid var(--p2)}
+.draft-body{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.pitch-panel{flex:1;display:flex;flex-direction:column;min-height:0;border-bottom:2px solid var(--border)}
+.pitch-panel:last-child{border-bottom:none}
+.pitch-label{font-family:var(--fh);font-size:12px;letter-spacing:3px;padding:3px 10px;flex-shrink:0}
+.pitch-panel.p1 .pitch-label{color:var(--p1);background:var(--p1bg)}
+.pitch-panel.p2 .pitch-label{color:var(--p2);background:var(--p2bg)}
+.pitch-wrap{flex:1;background:repeating-linear-gradient(0deg,transparent 0,transparent 49px,rgba(255,255,255,.04) 49px,rgba(255,255,255,.04) 50px),linear-gradient(180deg,var(--pitch),var(--pitch2));padding:4px 6px;display:flex;align-items:stretch;overflow:hidden}
+.formation-grid{display:flex;flex-direction:column;gap:3px;width:100%;justify-content:space-evenly}
+.row{display:flex;justify-content:center;gap:3px}
+.slot-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:52px;height:48px;border-radius:6px;border:1px dashed rgba(255,255,255,.25);background:rgba(0,0,0,.35);cursor:pointer;font-family:var(--fb);color:rgba(255,255,255,.7);font-size:9px;font-weight:600;letter-spacing:1px;transition:border-color .2s,background .2s,transform .1s;padding:2px;text-align:center;flex-shrink:0}
+.slot-btn .pos-label{font-family:var(--fh);font-size:13px;letter-spacing:1px;color:#fff;line-height:1}
+.slot-btn:hover:not(.filled):not(.locked){border-color:var(--gold);background:rgba(245,200,66,.12);transform:scale(1.06)}
+.slot-btn.filled{border-style:solid;border-color:rgba(255,255,255,.2);background:rgba(0,0,0,.5);cursor:default}
+.slot-btn.locked{opacity:.38;cursor:not-allowed}
+.slot-btn .mini-face{width:26px;height:26px;border-radius:50%;object-fit:contain;background:#222;flex-shrink:0}
+.slot-btn .mini-name{font-size:7px;text-align:center;line-height:1;color:#ddd;max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot-btn .mini-rat{font-family:var(--fh);font-size:11px;color:var(--gold);line-height:1}
+
+/* ── PICK OVERLAY ── */
+#pick-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;align-items:center;justify-content:center;padding:8px 4px}
+#pick-overlay.open{display:flex}
+.pick-modal{background:#161616;border:1px solid var(--border);border-radius:12px;width:100%;max-width:680px;padding:12px 6px 14px}
+.pick-modal h2{font-family:var(--fh);font-size:20px;letter-spacing:3px;margin-bottom:10px;text-align:center}
+.pick-modal h2 span{color:var(--gold)}
+.card-grid{display:flex;flex-wrap:nowrap;gap:4px;justify-content:center;padding:0 4px;overflow-x:auto}
+
+/* ── FIFA CARD ── */
+.fifa-card{width:calc(19vw - 4px);max-width:118px;min-width:56px;border-radius:10px;padding:8px 6px 10px;cursor:pointer;position:relative;transition:transform .2s,box-shadow .2s;user-select:none;flex-shrink:0}
+.fifa-card.gold{background:linear-gradient(145deg,#5a4200,#c8932a 40%,#f5c842 60%,#c8932a)}
+.fifa-card.silver{background:linear-gradient(145deg,#3a3f4a,#8a9099 40%,#c0c8d4 60%,#8a9099)}
+.fifa-card.bronze{background:linear-gradient(145deg,#4a2800,#a05a1a 40%,#cd7f32 60%,#a05a1a)}
+.fifa-card.special{background:linear-gradient(145deg,#0a2a3a,#0f4a6a 35%,#7fecff 55%,#0f4a6a 80%,#0a2a3a)}
+.fifa-card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 14px 36px rgba(0,0,0,.7)}
+.fifa-card:hover.gold{box-shadow:0 14px 36px rgba(245,200,66,.4)}
+.fifa-card:hover.special{box-shadow:0 14px 36px rgba(127,236,255,.4)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.card-ovr{font-family:var(--fh);font-size:clamp(13px,3.8vw,22px);line-height:1;color:#1a1000}
+.card-ovr-s{color:#001a22}
+.card-pos{font-family:var(--fh);font-size:clamp(7px,2vw,11px);letter-spacing:1px;color:#1a1000;line-height:1.2}
+.card-pos-s{color:#001a22}
+.card-face-wrap{width:100%;aspect-ratio:1;border-radius:5px;overflow:hidden;background:rgba(0,0,0,.2);margin-bottom:6px}
+.card-face-wrap img{width:100%;height:100%;object-fit:contain;display:block}
+.card-name{font-family:var(--fh);font-size:clamp(7px,2.2vw,12px);letter-spacing:.5px;text-align:center;color:#1a1000;margin-bottom:4px;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-name-s{color:#001a22}
+.card-divider{height:1px;background:rgba(0,0,0,.2);margin-bottom:4px}
+.card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px 2px;text-align:center}
+.card-stat{display:flex;flex-direction:column;align-items:center;gap:1px}
+.stat-val{font-family:var(--fh);font-size:clamp(8px,2.6vw,14px);color:#1a1000}
+.stat-val-s{color:#001a22}
+.stat-lbl{font-size:7px;font-weight:700;letter-spacing:.5px;color:rgba(26,16,0,.65);text-transform:uppercase}
+.stat-lbl-s{color:rgba(0,26,34,.65)}
+.card-nation{text-align:center;font-size:8px;letter-spacing:.5px;margin-top:4px;color:rgba(26,16,0,.55);text-transform:uppercase}
+.card-nation-s{color:rgba(0,26,34,.55)}
+
+/* ── RESULT ── */
+#screen-result{align-items:center;justify-content:flex-start;background:radial-gradient(ellipse at 50% 0%,#1a3a1a,#0d0d0d 60%);padding:24px 16px;gap:20px;overflow-y:auto}
+.result-title{font-family:var(--fh);font-size:clamp(32px,8vw,68px);letter-spacing:6px;color:var(--gold);text-align:center;text-shadow:0 0 40px rgba(245,200,66,.4)}
+.result-winner{font-family:var(--fh);font-size:clamp(22px,5vw,44px);letter-spacing:4px;text-align:center}
+.result-winner.p1{color:var(--p1)}.result-winner.p2{color:var(--p2)}.result-winner.draw{color:var(--gold)}
+
+/* SCORE BAR */
+.score-bar-wrap{width:100%;max-width:680px}
+.score-bar-label{display:flex;justify-content:space-between;font-family:var(--fh);font-size:18px;letter-spacing:2px;margin-bottom:6px}
+.score-bar-label .s1{color:var(--p1)}.score-bar-label .s2{color:var(--p2)}
+.score-bar{height:22px;background:#1a1a1a;border-radius:11px;overflow:hidden;display:flex;border:1px solid var(--border)}
+.score-bar .fill1{background:var(--p1);transition:width .8s ease}
+.score-bar .fill2{background:var(--p2);transition:width .8s ease}
+
+/* PHASE BREAKDOWN */
+.phases-wrap{width:100%;max-width:680px}
+.phases-wrap h3{font-family:var(--fh);font-size:20px;letter-spacing:3px;color:var(--muted);margin-bottom:10px;text-align:center}
+.phase-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.phase-label{font-family:var(--fh);font-size:13px;letter-spacing:1px;color:var(--muted);width:100px;flex-shrink:0;text-align:right}
+.phase-bar{flex:1;height:14px;background:#1a1a1a;border-radius:7px;overflow:hidden;display:flex;border:1px solid var(--border)}
+.phase-bar .pb1{background:var(--p1)}
+.phase-bar .pb2{background:var(--p2)}
+.phase-scores{display:flex;justify-content:space-between;font-family:var(--fh);font-size:13px;color:var(--muted);margin-top:2px;padding:0 2px}
+.phase-scores .best{color:var(--gold)}
+
+/* VERDICT */
+.verdict-wrap{width:100%;max-width:680px;background:#111;border:1px solid var(--border);border-radius:10px;padding:18px}
+.verdict-wrap h3{font-family:var(--fh);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:12px}
+.verdict-text{font-size:15px;line-height:1.7;color:var(--text)}
+
+/* BATTLES */
+.battles-wrap{width:100%;max-width:680px}
+.battles-wrap h3{font-family:var(--fh);font-size:20px;letter-spacing:3px;color:var(--muted);margin-bottom:10px;text-align:center}
+.battle-card{background:#111;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
+.battle-title{font-family:var(--fh);font-size:15px;letter-spacing:2px;color:var(--gold);margin-bottom:4px}
+.battle-winner{font-size:13px;color:var(--text);font-weight:700;margin-bottom:3px}
+.battle-reason{font-size:12px;color:var(--muted);line-height:1.5}
+.battle-effect{font-size:11px;color:#4ade80;margin-top:4px;font-style:italic}
+
+/* WEAKNESSES */
+.weak-wrap{width:100%;max-width:680px}
+.weak-wrap h3{font-family:var(--fh);font-size:20px;letter-spacing:3px;color:var(--muted);margin-bottom:10px;text-align:center}
+.weak-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.weak-card{flex:1;min-width:200px;background:#111;border-radius:8px;padding:12px;border:1px solid var(--border)}
+.weak-card h4{font-family:var(--fh);font-size:14px;letter-spacing:2px;margin-bottom:8px}
+.weak-card.p1 h4{color:var(--p1)}.weak-card.p2 h4{color:var(--p2)}
+.weak-item{font-size:11px;color:var(--muted);padding:3px 0;border-bottom:1px solid #1a1a1a;line-height:1.4}
+.weak-item:last-child{border-bottom:none}
+.weak-item .wi-label{color:#ef4444;font-weight:700}
+
+/* SQUADS */
+.squads-wrap{width:100%;max-width:900px}
+.squads-wrap h3{font-family:var(--fh);font-size:20px;letter-spacing:3px;color:var(--muted);margin-bottom:10px;text-align:center}
+.squad-row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.mini-squad{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.mini-squad h4{width:100%;font-family:var(--fh);font-size:14px;letter-spacing:2px;margin-bottom:6px;text-align:center}
+.mini-squad h4.p1{color:var(--p1)}.mini-squad h4.p2{color:var(--p2)}
+.mini-squad .fifa-card{width:88px;cursor:default;transform:none!important}
+
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#000;font-family:var(--fh);font-size:17px;letter-spacing:2px;padding:10px 24px;border-radius:6px;z-index:999;transition:transform .3s;pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0)}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#0d0d0d}
+::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<section id="screen-intro" class="screen active">
+  <div class="logo">DRAFT<br/>ZONE</div>
+  <div class="sub">Tactical Draft Engine</div>
+  <div class="pitch-decor"></div>
+  <div class="name-inputs">
+    <input id="name1" type="text" maxlength="16" placeholder="PLAYER 1 NAME"/>
+    <input id="name2" type="text" maxlength="16" placeholder="PLAYER 2 NAME"/>
+  </div>
+  <button class="btn" onclick="startDraft()">KICK OFF</button>
+</section>
+
+<!-- DRAFT -->
+<section id="screen-draft" class="screen">
+  <div class="draft-header">
+    <div id="turn-banner" class="turn-banner p1">— PLAYER 1'S TURN —</div>
+    <div class="draft-teams">
+      <div id="pill1" class="team-pill p1">P1: 0/11</div>
+      <div id="pill2" class="team-pill p2">P2: 0/11</div>
+    </div>
+  </div>
+  <div class="draft-body">
+    <div class="pitch-panel p1">
+      <div class="pitch-label" id="p1-name-head">PLAYER 1</div>
+      <div class="pitch-wrap" id="pitch1"></div>
+    </div>
+    <div class="pitch-panel p2">
+      <div class="pitch-label" id="p2-name-head">PLAYER 2</div>
+      <div class="pitch-wrap" id="pitch2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PICK OVERLAY -->
+<div id="pick-overlay">
+  <div class="pick-modal">
+    <h2>PICK YOUR <span id="pick-pos-label">PLAYER</span></h2>
+    <div class="card-grid" id="card-grid"></div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<section id="screen-result" class="screen">
+  <div class="result-title">FULL TIME</div>
+  <div id="result-winner" class="result-winner"></div>
+
+  <div class="score-bar-wrap">
+    <div class="score-bar-label">
+      <span class="s1" id="rb-name1">P1</span>
+      <span style="color:var(--muted);font-family:var(--fh);font-size:14px;letter-spacing:2px">OVERALL</span>
+      <span class="s2" id="rb-name2">P2</span>
+    </div>
+    <div class="score-bar">
+      <div class="fill1" id="rb-fill1" style="width:50%"></div>
+      <div class="fill2" id="rb-fill2" style="width:50%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-family:var(--fh);font-size:18px;margin-top:4px">
+      <span id="rb-score1" style="color:var(--p1)">0</span>
+      <span id="rb-score2" style="color:var(--p2)">0</span>
+    </div>
+  </div>
+
+  <div class="phases-wrap">
+    <h3>PHASE BREAKDOWN</h3>
+    <div id="phase-rows"></div>
+  </div>
+
+  <div class="verdict-wrap">
+    <h3>⚽ MATCH VERDICT</h3>
+    <div class="verdict-text" id="verdict-text"></div>
+  </div>
+
+  <div class="battles-wrap">
+    <h3>KEY BATTLES</h3>
+    <div id="battle-cards"></div>
+  </div>
+
+  <div class="weak-wrap">
+    <h3>VULNERABILITIES</h3>
+    <div class="weak-row" id="weak-row"></div>
+  </div>
+
+  <div class="squads-wrap">
+    <h3>SQUADS</h3>
+    <div class="squad-row">
+      <div class="mini-squad" id="squad1-cards"></div>
+      <div class="mini-squad" id="squad2-cards"></div>
+    </div>
+  </div>
+
+  <button class="btn" style="margin-top:8px;margin-bottom:32px" onclick="resetGame()">PLAY AGAIN</button>
+</section>
+
+<div id="toast"></div>
+<script src="players.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════
+//  LAYOUT — 4-3-3 (11 players)
+// ═══════════════════════════════════════════════════════════
+const LAYOUT = [
+  {slot:"GK",  label:"GK",  role:"gk",      row:0},
+  {slot:"LB",  label:"LB",  role:"lb",      row:1},
+  {slot:"CB",  label:"CB",  role:"cb",      row:1},
+  {slot:"CB",  label:"CB",  role:"cb",      row:1},
+  {slot:"RB",  label:"RB",  role:"rb",      row:1},
+  {slot:"CDM", label:"CDM", role:"cdm",     row:3},
+  {slot:"CM",  label:"CM",  role:"cm",      row:3},
+  {slot:"CAM", label:"CAM", role:"cam",     row:3},
+  {slot:"LW",  label:"LW",  role:"lw",      row:4},
+  {slot:"RW",  label:"RW",  role:"rw",      row:4},
+  {slot:"ST",  label:"ST",  role:"st",      row:5},
+];
+
+function getPlayersForSlot(slot){
+  let eligible;
+  if(slot==="CDM") eligible=PLAYERS.filter(p=>p.positions.includes("CDM"));
+  else if(slot==="CM") eligible=PLAYERS.filter(p=>p.positions.includes("CM"));
+  else if(slot==="CAM") eligible=PLAYERS.filter(p=>p.positions.includes("CAM"));
+  else eligible=PLAYERS.filter(p=>p.positions.includes(slot));
+  return eligible.filter(p=>!state.drafted.has(p.name));
+}
+
+// ═══════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════
+let state={};
+function freshState(){return{names:["Player 1","Player 2"],turn:0,squads:[LAYOUT.map(()=>null),LAYOUT.map(()=>null)],drafted:new Set(),pendingSlot:null}}
+
+function toast(msg,ms=2000){
+  const el=document.getElementById("toast");
+  el.textContent=msg;el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),ms);
+}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pickCandidates(slot,count=5){return shuffle(getPlayersForSlot(slot)).slice(0,count)}
+function avg(...vals){const v=vals.filter(x=>x!=null&&x!==undefined);return v.length?v.reduce((a,b)=>a+b,0)/v.length:0}
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v))}
+
+const FALLBACK="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect fill="#333" width="200" height="200"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80">⚽</text></svg>');
+
+function cardHTML(player,displayPos,clickable=true){
+  const sp=player.rarity==="special";const tc=sp?"-s":"";
+  return`<div class="fifa-card ${player.rarity}"${clickable?` onclick="selectPlayer('${encodeURIComponent(player.name)}')"`:""}>
+    <div class="card-top"><div><div class="card-ovr${tc}">${player.overall}</div><div class="card-pos${tc}">${displayPos||player.position}</div></div></div>
+    <div class="card-face-wrap"><img src="${player.face}" alt="${player.name}" onerror="this.src='${FALLBACK}'"/></div>
+    <div class="card-name${tc}">${player.name}</div>
+    <div class="card-divider"></div>
+    <div class="card-stats">
+      <div class="card-stat"><div class="stat-val${tc}">${player.attack}</div><div class="stat-lbl${tc}">ATT</div></div>
+      <div class="card-stat"><div class="stat-val${tc}">${player.midfield}</div><div class="stat-lbl${tc}">MID</div></div>
+      <div class="card-stat"><div class="stat-val${tc}">${player.defense}</div><div class="stat-lbl${tc}">DEF</div></div>
+    </div>
+    <div class="card-nation${tc}">${player.nation} · ${player.club}</div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════════════════
+//  PITCH RENDERING
+// ═══════════════════════════════════════════════════════════
+function buildPitch(idx){
+  const el=document.getElementById(`pitch${idx+1}`);
+  const isMyTurn=state.turn===idx;
+  const squad=state.squads[idx];
+  const rows={};
+  LAYOUT.forEach((s,i)=>{if(!rows[s.row])rows[s.row]=[];rows[s.row].push({slotDef:s,slotIdx:i})});
+  let html='<div class="formation-grid">';
+  Object.keys(rows).sort((a,b)=>Number(b)-Number(a)).forEach(rk=>{
+    html+='<div class="row">';
+    rows[rk].forEach(({slotDef,slotIdx})=>{
+      const p=squad[slotIdx];
+      if(p){
+        html+=`<div class="slot-btn filled"><img class="mini-face" src="${p.face}" onerror="this.src='${FALLBACK}'"/><div class="mini-name">${p.name.split(" ").pop()}</div><div class="mini-rat">${p.overall}</div></div>`;
+      } else if(isMyTurn){
+        html+=`<button class="slot-btn" onclick="openPick(${idx},${slotIdx})"><div class="pos-label">${slotDef.label}</div><div style="font-size:7px;color:var(--muted)">tap</div></button>`;
+      } else {
+        html+=`<div class="slot-btn locked"><div class="pos-label">${slotDef.label}</div></div>`;
+      }
+    });
+    html+='</div>';
+  });
+  html+='</div>';
+  el.innerHTML=html;
+}
+function rebuildPitches(){buildPitch(0);buildPitch(1);updateHeader()}
+function updateHeader(){
+  const name=state.names[state.turn];
+  const b=document.getElementById("turn-banner");
+  b.textContent=`— ${name.toUpperCase()}'S TURN —`;
+  b.className=`turn-banner p${state.turn+1}`;
+  const f0=state.squads[0].filter(Boolean).length;
+  const f1=state.squads[1].filter(Boolean).length;
+  document.getElementById("pill1").textContent=`${state.names[0].toUpperCase()}: ${f0}/11`;
+  document.getElementById("pill2").textContent=`${state.names[1].toUpperCase()}: ${f1}/11`;
+}
+
+function openPick(playerIdx,slotIdx){
+  if(state.turn!==playerIdx){toast("Not your turn!");return}
+  const slotDef=LAYOUT[slotIdx];
+  const candidates=pickCandidates(slotDef.slot);
+  if(!candidates.length){toast("No players left for this slot!");return}
+  state.pendingSlot={playerIdx,slotIdx};
+  document.getElementById("pick-pos-label").textContent=slotDef.label;
+  document.getElementById("card-grid").innerHTML=candidates.map(p=>cardHTML(p,slotDef.slot,true)).join("");
+  document.getElementById("pick-overlay").classList.add("open");
+}
+
+function selectPlayer(enc){
+  const name=decodeURIComponent(enc);
+  const player=PLAYERS.find(p=>p.name===name);
+  if(!player)return;
+  const{playerIdx,slotIdx}=state.pendingSlot;
+  state.squads[playerIdx][slotIdx]=player;
+  state.drafted.add(player.name);
+  document.getElementById("pick-overlay").classList.remove("open");
+  const p1Done=state.squads[0].every(Boolean);
+  const p2Done=state.squads[1].every(Boolean);
+  if(p1Done&&p2Done){setTimeout(showResult,400);return}
+  const other=1-playerIdx;
+  if(state.squads[other].some(s=>s===null))state.turn=other;
+  else if(state.squads[playerIdx].some(s=>s===null))state.turn=playerIdx;
+  rebuildPitches();
+  toast(`${player.name} drafted!`);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MATCH ENGINE
+// ═══════════════════════════════════════════════════════════
+
+function getByRole(squad,role){
+  return LAYOUT.map((s,i)=>s.role===role?squad[i]:null).filter(Boolean);
+}
+function getFirst(squad,role){return getByRole(squad,role)[0]||null}
+
+function teamProfile(squad){
+  const gk=getFirst(squad,"gk");
+  const cbs=getByRole(squad,"cb");
+  const lb=getFirst(squad,"lb");
+  const rb=getFirst(squad,"rb");
+  const cdm=getFirst(squad,"cdm");
+  const cm=getFirst(squad,"cm");
+  const cam=getFirst(squad,"cam");
+  const lw=getFirst(squad,"lw");
+  const rw=getFirst(squad,"rw");
+  const st=getFirst(squad,"st");
+  const all=squad.filter(Boolean);
+
+  // Aggregate stats
+  const avgStat=key=>avg(...all.map(p=>p[key]));
+  const pace=avgStat("pace");
+  const pressing=avgStat("pressing");
+  const workRate=avgStat("workRate");
+  const stamina=avgStat("stamina");
+  const pressResistance=avgStat("pressResistance");
+  const intelligence=avgStat("intelligence");
+  const creativity=avgStat("creativity");
+  const physical=avgStat("physical");
+  const technical=avgStat("technical");
+  const bigGame=avgStat("bigGameRating");
+  const consistency=avgStat("consistency");
+
+  // Defensive
+  const defLine=avg(...cbs.map(p=>p.defensiveAwareness));
+  const cbPace=avg(...cbs.map(p=>p.pace));
+  const cbAerial=avg(...cbs.map(p=>p.aerial));
+  const cbTackle=avg(...cbs.map(p=>p.tackling));
+  const cdmProtection=cdm?avg(cdm.defensiveAwareness,cdm.tackling,cdm.positioning):50;
+
+  // Attacking
+  const stFinish=st?st.finishing:0;
+  const stAerial=st?st.aerial:0;
+  const attackPace=avg(...[lw,rw,st].filter(Boolean).map(p=>p.pace));
+  const wingerCreativity=avg(...[lw,rw].filter(Boolean).map(p=>p.creativity));
+  const crossing=avg(...[lb,rb,lw,rw].filter(Boolean).map(p=>p.crossing));
+  const setPieces=avg(...all.map(p=>p.setPieces));
+  const aerial=avg(...[st,...cbs].filter(Boolean).map(p=>p.aerial));
+
+  // Midfield
+  const midControl=avg(...[cdm,cm,cam].filter(Boolean).map(p=>p.midfield));
+  const midPressRes=avg(...[cdm,cm,cam].filter(Boolean).map(p=>p.pressResistance));
+  const midPassing=avg(...[cdm,cm,cam].filter(Boolean).map(p=>p.passing));
+  const midCreativity=avg(...[cm,cam].filter(Boolean).map(p=>p.creativity));
+
+  // Transition
+  const transitionThreat=avg(...[lw,rw,st].filter(Boolean).map(p=>p.transitionThreat));
+  const fbAttack=avg(...[lb,rb].filter(Boolean).map(p=>p.attack));
+
+  // Playstyle detection
+  const playstyles=all.flatMap(p=>p.playstyles||[]);
+  const countStyle=s=>playstyles.filter(x=>x===s).length;
+  const dominantStyle=()=>{
+    const styles=["counterAttack","possession","highPress","direct","wide","organised"];
+    return styles.sort((a,b)=>countStyle(b)-countStyle(a))[0];
+  };
+  const archetype=dominantStyle();
+
+  // GK
+  const gkRating=gk?avg(gk.goalkeeperRating,gk.reflexes,gk.commandOfArea):60;
+  const gkDistribution=gk?gk.distribution:60;
+
+  // FB attack risk
+  const fbAttackRisk=avg(...[lb,rb].filter(Boolean).map(p=>{
+    const hasAttackingTrait=(p.traits||[]).includes("attackingFullback");
+    return hasAttackingTrait?p.attack:p.attack*0.6;
+  }));
+
+  return{
+    gk,cbs,lb,rb,cdm,cm,cam,lw,rw,st,all,
+    pace,pressing,workRate,stamina,pressResistance,intelligence,creativity,physical,technical,bigGame,consistency,
+    defLine,cbPace,cbAerial,cbTackle,cdmProtection,
+    stFinish,stAerial,attackPace,wingerCreativity,crossing,setPieces,aerial,
+    midControl,midPressRes,midPassing,midCreativity,
+    transitionThreat,fbAttack,fbAttackRisk,
+    archetype,gkRating,gkDistribution,
+    playstyles:playstyles
+  };
+}
+
+function calcPhaseScores(A,B){
+  // ── 1. ATTACK vs DEFENCE ──────────────────────────────────
+  // A attack vs B defence
+  function attackVsDef(atk,def){
+    // Raw attacking power
+    let score=avg(atk.stFinish,atk.attackPace,atk.wingerCreativity,atk.crossing)*0.5;
+    // Pace vs CB pace — fast attack punishes slow CBs but only if space
+    const paceDiff=clamp(atk.attackPace-def.cbPace,-30,30);
+    const spaceAvailable=clamp(100-def.defLine,20,80)/100;
+    const paceBonus=paceDiff*spaceAvailable*0.4;
+    score+=paceBonus;
+    // Intelligence reduces pace threat
+    const intelReduction=clamp(def.intelligence-75,0,20)*0.3;
+    score-=intelReduction;
+    // CDM protection reduces transition danger
+    score-=clamp(def.cdmProtection-70,0,15)*0.25;
+    // Aerial threat vs aerial defence
+    const aerialDiff=atk.aerial-def.cbAerial;
+    score+=aerialDiff*0.15;
+    // Pressing disrupts build-up
+    score-=clamp(def.pressing-50,0,30)*0.1;
+    // GK reduces goal threat
+    score-=clamp(def.gkRating-75,0,15)*0.2;
+    // Finishing quality
+    score+=clamp(atk.stFinish-80,0,15)*0.3;
+    // Creativity bonus
+    score+=clamp(atk.creativity-75,0,20)*0.2;
+    return clamp(score,20,95);
+  }
+  const aAttack=attackVsDef(A,B);
+  const bAttack=attackVsDef(B,A);
+
+  // ── 2. MIDFIELD BATTLE ────────────────────────────────────
+  function midfieldBattle(atk,def){
+    let score=avg(atk.midControl,atk.midPassing,atk.midCreativity)*0.55;
+    // Press resistance vs opponent pressing
+    const pressAdv=clamp(atk.midPressRes-def.pressing,-20,20)*0.35;
+    score+=pressAdv;
+    // Work rate matters
+    score+=clamp(atk.workRate-70,0,20)*0.2;
+    // Stamina for late game
+    score+=clamp(atk.stamina-75,0,15)*0.15;
+    // Intelligence in midfield
+    score+=clamp(atk.intelligence-80,0,15)*0.2;
+    // Physical duels
+    const physDiff=clamp(atk.physical-def.physical,-15,15)*0.15;
+    score+=physDiff;
+    // Technical ability
+    score+=clamp(atk.technical-80,0,15)*0.2;
+    return clamp(score,25,95);
+  }
+  const aMid=midfieldBattle(A,B);
+  const bMid=midfieldBattle(B,A);
+
+  // ── 3. TRANSITION ─────────────────────────────────────────
+  function transitionScore(atk,def){
+    let score=atk.transitionThreat*0.5;
+    // Only effective against high lines or attacking fullbacks
+    const defLineRisk=clamp(100-def.defLine,20,80)/100;
+    const fbRisk=clamp(def.fbAttackRisk-50,0,30)/100;
+    const contextMult=0.5+(defLineRisk*0.3)+(fbRisk*0.2);
+    score*=contextMult;
+    // Reduced by intelligence and CDM
+    score-=clamp(def.intelligence-80,0,15)*0.3;
+    score-=clamp(def.cdmProtection-70,0,15)*0.35;
+    // CB pace reduces transition threat
+    score-=clamp(def.cbPace-75,0,20)*0.25;
+    // Pace of attackers
+    score+=clamp(atk.attackPace-80,0,18)*0.35;
+    return clamp(score,15,95);
+  }
+  const aTrans=transitionScore(A,B);
+  const bTrans=transitionScore(B,A);
+
+  // ── 4. WIDE BATTLE ───────────────────────────────────────
+  // Right attack vs Left defence and vice versa
+  function wideBattle(atk,def){
+    const wingers=[atk.lw,atk.rw].filter(Boolean);
+    const fullbacks=[def.lb,def.rb].filter(Boolean);
+    if(!wingers.length||!fullbacks.length)return 50;
+    const wAtk=avg(...wingers.map(w=>avg(w.dribbling,w.pace,w.crossing,w.creativity)));
+    const fbDef=avg(...fullbacks.map(fb=>avg(fb.pace,fb.tackling,fb.defensiveAwareness,fb.intelligence)));
+    let score=wAtk*0.55-fbDef*0.35;
+    // Winger work rate — do they track back?
+    const wingerWorkRate=avg(...wingers.map(w=>w.workRate));
+    if(wingerWorkRate<65)score+=5; // more attack, less defence
+    // Fullback attack risk creates space for wingers
+    score+=clamp(def.fbAttackRisk-55,0,20)*0.2;
+    return clamp(score,20,90);
+  }
+  const aWide=wideBattle(A,B);
+  const bWide=wideBattle(B,A);
+
+  // ── 5. SET PIECES ─────────────────────────────────────────
+  function setPieceScore(atk,def){
+    let score=avg(atk.setPieces,atk.crossing)*0.5;
+    score+=clamp(atk.aerial-70,0,20)*0.3;
+    score-=clamp(def.cbAerial-75,0,20)*0.25;
+    score-=clamp(def.gkRating-80,0,12)*0.2;
+    return clamp(score,20,90);
+  }
+  const aSetPiece=setPieceScore(A,B);
+  const bSetPiece=setPieceScore(B,A);
+
+  // ── 6. PRESSING ───────────────────────────────────────────
+  function pressingScore(atk,def){
+    let score=avg(atk.pressing,atk.workRate,atk.stamina)*0.5;
+    // Only punishes if opponent has low press resistance
+    const pressResAdv=clamp(atk.pressing-def.pressResistance,-20,20)*0.4;
+    score+=pressResAdv;
+    score-=clamp(def.gkDistribution-78,0,12)*0.2; // good GK distribution escapes press
+    return clamp(score,20,90);
+  }
+  const aPressing=pressingScore(A,B);
+  const bPressing=pressingScore(B,A);
+
+  // ── 7. DEFENSIVE STRUCTURE ────────────────────────────────
+  function defStructure(squad){
+    let score=avg(squad.defLine,squad.cbTackle,squad.cbAerial)*0.5;
+    score+=clamp(squad.cdmProtection-70,0,20)*0.3;
+    score+=clamp(squad.gkRating-75,0,15)*0.25;
+    score+=clamp(squad.intelligence-78,0,15)*0.2;
+    // Recovery pace
+    score+=clamp(squad.cbPace-70,0,20)*0.2;
+    return clamp(score,20,95);
+  }
+  const aDefStr=defStructure(A);
+  const bDefStr=defStructure(B);
+
+  // ── 8. SYNERGY ────────────────────────────────────────────
+  function synergyScore(prof){
+    let bonus=0;
+    const traits=prof.all.flatMap(p=>p.traits||[]);
+    const hasTrait=t=>traits.includes(t);
+    const playstyles=prof.playstyles;
+    const countP=s=>playstyles.filter(x=>x===s).length;
+
+    // Crossing + aerial target
+    if((hasTrait("crossingSpecialist")||prof.crossing>78)&&prof.stAerial>82)bonus+=6;
+    // Fast wingers + attacking fullbacks = overload
+    if(hasTrait("attackingFullback")&&prof.attackPace>84)bonus+=5;
+    // Press resistance + high press team = possession control
+    if(countP("highPress")>=4&&prof.midPressRes>82)bonus+=6;
+    // Transition pace + direct team
+    if(countP("counterAttack")>=3&&prof.transitionThreat>82)bonus+=5;
+    // Creative mid + clinical striker
+    if(prof.midCreativity>82&&prof.stFinish>88)bonus+=5;
+    // Balanced possession team
+    if(countP("possession")>=4&&prof.midPressRes>80)bonus+=4;
+    // Weak foot versatility
+    const avgWeakFoot=avg(...prof.all.map(p=>p.weakFoot));
+    if(avgWeakFoot>80)bonus+=3;
+    // Leadership + big game
+    if(prof.bigGame>85&&prof.consistency>85)bonus+=4;
+
+    // Bad balance penalties
+    if(prof.fbAttackRisk>70&&prof.cdmProtection<68)bonus-=6;
+    if(prof.transitionThreat<60&&countP("counterAttack")>=3)bonus-=4;
+    if(prof.midPressRes<65&&countP("highPress")>=3)bonus-=5;
+    if(prof.crossing>80&&prof.stAerial<70)bonus-=4; // cross with no aerial threat
+    if(prof.attackPace>85&&prof.defLine<60)bonus-=5; // all attack no def
+
+    return clamp(50+bonus,30,80);
+  }
+  const aSynergy=synergyScore(A);
+  const bSynergy=synergyScore(B);
+
+  // ── 9. GK ─────────────────────────────────────────────────
+  const aGK=clamp(A.gkRating,40,95);
+  const bGK=clamp(B.gkRating,40,95);
+
+  // ── FINAL SCORE ───────────────────────────────────────────
+  function finalScore(atk,def,mid,trans,wide,sp,press,ds,syn,gk){
+    return(
+      atk*0.18+
+      mid*0.16+
+      ds*0.16+
+      trans*0.12+
+      wide*0.10+
+      press*0.08+
+      sp*0.06+
+      gk*0.06+
+      syn*0.08
+    );
+  }
+
+  const aFinal=finalScore(aAttack,bAttack,aMid,aTrans,aWide,aSetPiece,aPressing,aDefStr,aSynergy,aGK);
+  const bFinal=finalScore(bAttack,aAttack,bMid,bTrans,bWide,bSetPiece,bPressing,bDefStr,bSynergy,bGK);
+
+  return{
+    aAttack,bAttack,aMid,bMid,aTrans,bTrans,aWide,bWide,
+    aSetPiece,bSetPiece,aPressing,bPressing,aDefStr,bDefStr,
+    aSynergy,bSynergy,aGK,bGK,aFinal,bFinal
+  };
+}
+
+// ─── KEY BATTLES ──────────────────────────────────────────
+function calcBattles(squadA,squadB,profA,profB){
+  const battles=[];
+
+  // ST vs CB partnership
+  const st1=getFirst(squadA,"st");
+  const st2=getFirst(squadB,"st");
+  const cb1s=getByRole(squadA,"cb");
+  const cb2s=getByRole(squadB,"cb");
+
+  if(st1&&cb2s.length){
+    const cbAvgPace=avg(...cb2s.map(c=>c.pace));
+    const cbAvgInt=avg(...cb2s.map(c=>c.intelligence));
+    const stScore=avg(st1.pace,st1.finishing,st1.positioning,st1.transitionThreat);
+    const defScore=avg(cbAvgPace,cbAvgInt,...cb2s.map(c=>c.defensiveAwareness));
+    const diff=stScore-defScore;
+    const winner=diff>3?st1.name:diff<-3?cb2s.map(c=>c.name).join("/")+` CB pair`:"Narrow";
+    battles.push({
+      title:`${st1.name} vs ${cb2s.map(c=>c.name).join(" & ")}`,
+      winner:diff>5?`${st1.name} edges it`:(diff<-5?`${cb2s.map(c=>c.name).join("/")} defensive win`:`Even battle`),
+      score:`${clamp(Math.round(50+diff),25,75)} - ${clamp(Math.round(50-diff),25,75)}`,
+      reason:diff>5?`${st1.name}'s pace and finishing creates problems that ${cb2s.map(c=>c.name).join("/")} can't fully contain.`:
+             diff<-5?`${cb2s.map(c=>c.name).join("/")} read the game brilliantly. Their intelligence and pace snuff out the threat.`:
+             `An even contest. ${st1.name} finds moments but ${cb2s.map(c=>c.name).join("/")} are resolute.`,
+      effect:diff>4?`Team A gain consistent box threat.`:diff<-4?`Team B defensive security boosts confidence.`:`Neutral impact on match.`
+    });
+  }
+
+  // Winger vs Fullback — left flank
+  const lw1=getFirst(squadA,"lw");
+  const rb2=getFirst(squadB,"rb");
+  if(lw1&&rb2){
+    const wScore=avg(lw1.dribbling,lw1.pace,lw1.transitionThreat,lw1.creativity);
+    const fbScore=avg(rb2.pace,rb2.tackling,rb2.defensiveAwareness,rb2.intelligence);
+    const diff=wScore-fbScore;
+    battles.push({
+      title:`${lw1.name} vs ${rb2.name}`,
+      winner:diff>6?`${lw1.name} dominant`:diff<-6?`${rb2.name} dominant`:`Contested`,
+      score:`${clamp(Math.round(50+diff),25,75)} - ${clamp(Math.round(50-diff),25,75)}`,
+      reason:diff>6?`${lw1.name}'s ${lw1.pace>88?"blistering pace":"dribbling ability"} gives ${rb2.name} a torrid time on that left flank.`:
+             diff<-6?`${rb2.name} reads every run. ${lw1.name} barely gets past him.`:
+             `A high quality duel. Both players find moments to shine.`,
+      effect:diff>5?`Team A's left flank is a constant danger.`:diff<-5?`Team B neutralise Team A's wide threat.`:`The flank battle cancels out.`
+    });
+  }
+
+  // Right flank
+  const rw1=getFirst(squadA,"rw");
+  const lb2=getFirst(squadB,"lb");
+  if(rw1&&lb2){
+    const wScore=avg(rw1.dribbling,rw1.pace,rw1.transitionThreat,rw1.creativity);
+    const fbScore=avg(lb2.pace,lb2.tackling,lb2.defensiveAwareness,lb2.intelligence);
+    const diff=wScore-fbScore;
+    battles.push({
+      title:`${rw1.name} vs ${lb2.name}`,
+      winner:diff>6?`${rw1.name} dominant`:diff<-6?`${lb2.name} dominant`:`Contested`,
+      score:`${clamp(Math.round(50+diff),25,75)} - ${clamp(Math.round(50-diff),25,75)}`,
+      reason:diff>6?`${rw1.name} is unstoppable on the right. ${lb2.name} can't live with the pace.`:
+             diff<-6?`${lb2.name} is exceptional. ${rw1.name} gets very little change.`:
+             `A competitive right-flank battle with both sides trading punches.`,
+      effect:diff>5?`Team A's right flank creates numerous dangerous situations.`:diff<-5?`Team B right side is watertight.`:`Neither side gains flank superiority.`
+    });
+  }
+
+  // Midfield battle
+  const cdm1=getFirst(squadA,"cdm");
+  const cam2=getFirst(squadB,"cam");
+  if(cdm1&&cam2){
+    const screenScore=avg(cdm1.tackling,cdm1.positioning,cdm1.defensiveAwareness,cdm1.intelligence);
+    const creativeScore=avg(cam2.creativity,cam2.passing,cam2.intelligence,cam2.pressResistance);
+    const diff=screenScore-creativeScore;
+    battles.push({
+      title:`${cdm1.name} screens vs ${cam2.name} creates`,
+      winner:diff>5?`${cdm1.name} shuts the channel`:diff<-5?`${cam2.name} finds space`:`Evenly matched`,
+      score:`${clamp(Math.round(50+diff),25,75)} - ${clamp(Math.round(50-diff),25,75)}`,
+      reason:diff>5?`${cdm1.name}'s positioning and intelligence snuffs out ${cam2.name}'s creative threat.`:
+             diff<-5?`${cam2.name} drifts between lines and finds pockets of space that ${cdm1.name} can't cover.`:
+             `${cdm1.name} and ${cam2.name} cancel each other out in a fascinating tactical battle.`,
+      effect:diff>4?`Team B's creative outlet is limited.`:diff<-4?`Team B dominate the creative space.`:`Central channel remains contested.`
+    });
+  }
+
+  // GK battle — who saves more
+  const gk1=getFirst(squadA,"gk");
+  const gk2=getFirst(squadB,"gk");
+  if(gk1&&gk2){
+    const diff=A.gkRating-B.gkRating;
+    battles.push({
+      title:`${gk1.name} vs ${gk2.name}`,
+      winner:diff>6?`${gk1.name} stands out`:diff<-6?`${gk2.name} stands out`:`Comparable quality`,
+      score:`${clamp(Math.round(50+diff),25,75)} - ${clamp(Math.round(50-diff),25,75)}`,
+      reason:diff>6?`${gk1.name} is the superior keeper and will make saves that prove decisive.`:
+             diff<-6?`${gk2.name} is the standout goalkeeper and could be the difference maker.`:
+             `Both keepers are of similar quality. Expect crucial saves at both ends.`,
+      effect:diff>5?`Team A have a more reliable last line.`:diff<-5?`Team B's keeper gives them an edge.`:`The goalkeeping quality is comparable.`
+    });
+  }
+
+  return battles;
+
+  function A(){return profA} function B(){return profB}
+}
+
+// ─── VULNERABILITIES ──────────────────────────────────────
+function detectWeaknesses(prof,oppProf){
+  const issues=[];
+  if(prof.cbPace<72&&oppProf.attackPace>82)
+    issues.push({label:"Slow centre-backs",detail:`With opponent avg attack pace ${Math.round(oppProf.attackPace)}, the CB pace of ${Math.round(prof.cbPace)} is a real concern in behind.`});
+  if(prof.cdmProtection<68&&oppProf.transitionThreat>78)
+    issues.push({label:"Weak CDM cover",detail:"Limited defensive midfield protection leaves the defensive line exposed to transitions."});
+  if(prof.midPressRes<68&&oppProf.pressing>76)
+    issues.push({label:"Low press resistance",detail:"The midfield will struggle to play out under intense pressure."});
+  if(prof.cbAerial<74&&(oppProf.crossing>78||oppProf.setPieces>78))
+    issues.push({label:"Poor aerial defence",detail:"Susceptible to crosses and set pieces — a clear route for the opponent."});
+  if(prof.fbAttackRisk>70&&prof.cdmProtection<72)
+    issues.push({label:"Attacking fullbacks unprotected",detail:"Fullbacks push high without CDM cover — counter-attack risk is significant."});
+  if(prof.defLine<62)
+    issues.push({label:"Defensive awareness gaps",detail:"The defensive line lacks positional intelligence and is vulnerable to clever movement."});
+  if(prof.gkRating<75)
+    issues.push({label:"Goalkeeper weakness",detail:"Below-par goalkeeper quality may cost crucial saves."});
+  if(prof.stFinish<70)
+    issues.push({label:"Lack of clinical finishing",detail:"Chances may be created but poor finishing will prove costly."});
+  if(prof.workRate<66)
+    issues.push({label:"Low work rate",detail:"Players don't press effectively. Opponent will have too much time on the ball."});
+  if(prof.crossing>78&&prof.stAerial<70)
+    issues.push({label:"Crosses with no aerial target",detail:"Great delivery but the striker isn't strong in the air — wasted delivery."});
+  return issues;
+}
+
+// ─── VERDICT GENERATOR ────────────────────────────────────
+function generateVerdict(scores,nameA,nameB,profA,profB,weakA,weakB){
+  const diff=scores.aFinal-scores.bFinal;
+  const absDiff=Math.abs(diff);
+  const winner=diff>0?nameA:diff<0?nameB:"Neither";
+  const loser=diff>0?nameB:diff<0?nameA:"Neither";
+  const winProb=clamp(Math.round(50+(diff*1.2)),20,80);
+
+  let margin="";
+  if(absDiff<2)margin="an incredibly tight contest — essentially a coin flip";
+  else if(absDiff<5)margin="a narrow win — small margins prove decisive";
+  else if(absDiff<9)margin="a clear win — the difference is evident across multiple phases";
+  else margin="a dominant win — outclassed in key areas";
+
+  // Identify strongest phase
+  const phaseLabels={
+    "Attack":scores.aFinal>scores.bFinal?scores.aAttack-scores.bAttack:scores.bAttack-scores.aAttack,
+    "Midfield":scores.aFinal>scores.bFinal?scores.aMid-scores.bMid:scores.bMid-scores.aMid,
+    "Transition":scores.aFinal>scores.bFinal?scores.aTrans-scores.bTrans:scores.bTrans-scores.aTrans,
+    "Wide Play":scores.aFinal>scores.bFinal?scores.aWide-scores.bWide:scores.bWide-scores.aWide,
+    "Defence":scores.aFinal>scores.bFinal?scores.aDefStr-scores.bDefStr:scores.bDefStr-scores.aDefStr,
+    "Pressing":scores.aFinal>scores.bFinal?scores.aPressing-scores.bPressing:scores.bPressing-scores.aPressing,
+  };
+  const keyPhase=Object.entries(phaseLabels).sort((a,b)=>b[1]-a[1])[0][0];
+
+  // Archetype clash description
+  const archetypeClash=()=>{
+    const A=profA.archetype,B=profB.archetype;
+    if(A==="counterAttack"&&B==="possession")return`${nameA}'s counter-attacking pace is a persistent threat against ${nameB}'s possession game, but only when the high press succeeds.`;
+    if(A==="possession"&&B==="counterAttack")return`${nameA}'s possession control limits ${nameB}'s transition windows — the longer ${nameA} keeps the ball, the less effective ${nameB} becomes.`;
+    if(A==="highPress"&&B==="possession")return`The high press from ${nameA} forces errors, but ${nameB}'s press resistance is the key variable.`;
+    if(A==="possession"&&B==="highPress")return`${nameA}'s technical ability should allow them to play through the press, making ${nameB}'s high line a calculated gamble.`;
+    return`Both teams have contrasting styles that create an open and unpredictable match.`;
+  };
+
+  // Key weakness exploited
+  const mainWeak=diff>0?weakB[0]:weakA[0];
+  const weakExploit=mainWeak?`The decisive vulnerability is ${mainWeak.label.toLowerCase()} — ${mainWeak.detail}`:"Both teams are well-balanced with no glaring weakness.";
+
+  const verdict=`${winner} ${diff===0?"draws with":"edges"} ${loser} — ${margin}. Win probability: ${winProb}% - ${100-winProb}%.
+
+${archetypeClash()}
+
+The key deciding phase is ${keyPhase.toLowerCase()}. ${
+    keyPhase==="Midfield"?`Midfield control determines the tempo and who creates more high-quality chances.`:
+    keyPhase==="Attack"?`The attacking quality proves too much for the opposition defence to handle consistently.`:
+    keyPhase==="Transition"?`Transition speed repeatedly exposes the defensive line in behind.`:
+    keyPhase==="Wide Play"?`The flanks become the decisive battleground — winger vs fullback determines the match.`:
+    keyPhase==="Defence"?`Defensive solidity keeps the opponent's attack quiet when it matters most.`:
+    `The pressing intensity disrupts the opponent's build-up and creates turnovers in dangerous areas.`
+  }
+
+${weakExploit}
+
+${profA.archetype==="counterAttack"||profB.archetype==="counterAttack"?`Transition moments are critical. The team with pace behind the defensive line has a constant threat that demands respect.`:`Both teams want to control the ball and the match will be decided by who wins the midfield battle.`}`;
+
+  return{verdict,winProb,winner,loser,margin};
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SHOW RESULT
+// ═══════════════════════════════════════════════════════════
+function showResult(){
+  const profA=teamProfile(state.squads[0]);
+  const profB=teamProfile(state.squads[1]);
+  const scores=calcPhaseScores(profA,profB);
+  const battlesA=getFirst(state.squads[0],"gk"); // trigger
+  const battles=calcBattles(state.squads[0],state.squads[1],profA,profB);
+  const weakA=detectWeaknesses(profA,profB);
+  const weakB=detectWeaknesses(profB,profA);
+  const n0=state.names[0],n1=state.names[1];
+  const{verdict,winProb,winner}=generateVerdict(scores,n0,n1,profA,profB,weakA,weakB);
+
+  // Winner banner
+  const winEl=document.getElementById("result-winner");
+  const diff=scores.aFinal-scores.bFinal;
+  if(Math.abs(diff)<2){winEl.textContent="IT'S A DRAW";winEl.className="result-winner draw"}
+  else if(diff>0){winEl.textContent=`🏆 ${n0.toUpperCase()} WINS`;winEl.className="result-winner p1"}
+  else{winEl.textContent=`🏆 ${n1.toUpperCase()} WINS`;winEl.className="result-winner p2"}
+
+  // Score bar
+  document.getElementById("rb-name1").textContent=n0.toUpperCase();
+  document.getElementById("rb-name2").textContent=n1.toUpperCase();
+  const tot=scores.aFinal+scores.bFinal;
+  const pA=Math.round(scores.aFinal/tot*100);
+  const pB=100-pA;
+  document.getElementById("rb-fill1").style.width=pA+"%";
+  document.getElementById("rb-fill2").style.width=pB+"%";
+  document.getElementById("rb-score1").textContent=Math.round(scores.aFinal);
+  document.getElementById("rb-score2").textContent=Math.round(scores.bFinal);
+
+  // Phase breakdown
+  const phases=[
+    {label:"ATTACK",a:scores.aAttack,b:scores.bAttack},
+    {label:"MIDFIELD",a:scores.aMid,b:scores.bMid},
+    {label:"DEFENCE",a:scores.aDefStr,b:scores.bDefStr},
+    {label:"TRANSITION",a:scores.aTrans,b:scores.bTrans},
+    {label:"WIDE",a:scores.aWide,b:scores.bWide},
+    {label:"PRESSING",a:scores.aPressing,b:scores.bPressing},
+    {label:"SET PIECES",a:scores.aSetPiece,b:scores.bSetPiece},
+    {label:"GOALKEEPER",a:scores.aGK,b:scores.bGK},
+    {label:"SYNERGY",a:scores.aSynergy,b:scores.bSynergy},
+  ];
+  const phaseHTML=phases.map(ph=>{
+    const tot=ph.a+ph.b;
+    const pA=Math.round(ph.a/tot*100);
+    const pB=100-pA;
+    const aWin=ph.a>=ph.b;
+    return`<div class="phase-row">
+      <div class="phase-label">${ph.label}</div>
+      <div style="flex:1">
+        <div class="phase-bar"><div class="pb1" style="width:${pA}%"></div><div class="pb2" style="width:${pB}%"></div></div>
+        <div class="phase-scores"><span class="${aWin?"best":""}">${Math.round(ph.a)}</span><span class="${!aWin?"best":""}">${Math.round(ph.b)}</span></div>
+      </div>
+    </div>`;
+  }).join("");
+  document.getElementById("phase-rows").innerHTML=phaseHTML;
+
+  // Verdict
+  document.getElementById("verdict-text").innerHTML=verdict.replace(/\n\n/g,"<br/><br/>").replace(/\n/g,"<br/>");
+
+  // Battles
+  document.getElementById("battle-cards").innerHTML=battles.map(b=>`
+    <div class="battle-card">
+      <div class="battle-title">${b.title}</div>
+      <div class="battle-winner">🏅 ${b.winner} &nbsp; <span style="color:var(--muted);font-size:11px">${b.score}</span></div>
+      <div class="battle-reason">${b.reason}</div>
+      <div class="battle-effect">${b.effect}</div>
+    </div>`).join("");
+
+  // Weaknesses
+  document.getElementById("weak-row").innerHTML=`
+    <div class="weak-card p1"><h4>${n0.toUpperCase()} RISKS</h4>${weakA.length?weakA.map(w=>`<div class="weak-item"><span class="wi-label">▲ ${w.label}:</span> ${w.detail}</div>`).join(""):`<div class="weak-item" style="color:#4ade80">No major vulnerabilities detected</div>`}</div>
+    <div class="weak-card p2"><h4>${n1.toUpperCase()} RISKS</h4>${weakB.length?weakB.map(w=>`<div class="weak-item"><span class="wi-label">▲ ${w.label}:</span> ${w.detail}</div>`).join(""):`<div class="weak-item" style="color:#4ade80">No major vulnerabilities detected</div>`}</div>`;
+
+  // Squads
+  document.getElementById("squad1-cards").innerHTML=`<h4 class="p1">${n0.toUpperCase()}</h4>`+state.squads[0].map((p,i)=>p?cardHTML(p,LAYOUT[i].slot,false):"").join("");
+  document.getElementById("squad2-cards").innerHTML=`<h4 class="p2">${n1.toUpperCase()}</h4>`+state.squads[1].map((p,i)=>p?cardHTML(p,LAYOUT[i].slot,false):"").join("");
+
+  showScreen("result");
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SCREEN MANAGEMENT
+// ═══════════════════════════════════════════════════════════
+function showScreen(name){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(`screen-${name}`).classList.add("active");
+  window.scrollTo(0,0);
+}
+function startDraft(){
+  const n1=document.getElementById("name1").value.trim()||"Player 1";
+  const n2=document.getElementById("name2").value.trim()||"Player 2";
+  state=freshState();state.names=[n1,n2];
+  document.getElementById("p1-name-head").textContent=n1.toUpperCase();
+  document.getElementById("p2-name-head").textContent=n2.toUpperCase();
+  showScreen("draft");rebuildPitches();
+}
+function resetGame(){showScreen("intro")}
+document.getElementById("pick-overlay").addEventListener("click",function(e){if(e.target===this)this.classList.remove("open")});
+</script>
+</body>
+</html>
